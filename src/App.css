@@ -144,6 +144,142 @@
   100% { transform: translateY(0); }
 }
 
+/* ABOUT SECTION (Frame 3) */
+.about-section {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #FFCBFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10vh 0;
+  position: relative;
+  /* Removed overflow: hidden so Thea's head isn't clipped when zoomed */
+}
+
+.about-container {
+  position: relative;
+  width: clamp(300px, 85vw, 1200px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-content-bg {
+  width: 100%;
+  height: auto;
+  z-index: 2;
+}
+
+.about-subject-wrapper {
+  position: absolute;
+  left: 2%; /* Adjusted to the right to match the reference */
+  bottom: 0;
+  height: 115%;
+  width: auto;
+  z-index: 3;
+  animation: floatSubject 5s ease-in-out infinite;
+  display: flex;
+  align-items: flex-end;
+}
+
+.about-subject {
+  height: 100%;
+  width: auto;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-origin: bottom center;
+}
+
+.about-subject:hover {
+  transform: scale(1.08); /* Completely smooth zoom */
+}
+
+@keyframes floatSubject {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.about-pic1-wrapper {
+  position: absolute;
+  right: -15%; /* Brought slightly left to find the sweet spot */
+  top: 35%; /* Lowered significantly to sit right above Picture 2 */
+  width: 25%;
+  height: auto;
+  z-index: 4; /* Higher z-index so it sits ON TOP of Picture 2 */
+  animation: floatPic1 6s ease-in-out infinite;
+}
+
+.about-pic1 {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.about-pic1:hover {
+  transform: scale(1.15) rotate(3deg);
+}
+
+.about-pic2-wrapper {
+  position: absolute;
+  right: -12%; /* Brought slightly left */
+  bottom: 5%; 
+  width: 25%;
+  height: auto;
+  z-index: 3; /* Lower z-index so it sits UNDER Picture 1 */
+  animation: floatPic2 7s ease-in-out infinite;
+}
+
+.about-pic2 {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.about-pic2:hover {
+  transform: scale(1.15) rotate(-3deg);
+}
+
+@keyframes floatPic1 {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(3deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes floatPic2 {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(-3deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@media (max-width: 768px) {
+  .about-subject-wrapper {
+    height: 95%;
+    left: 0;
+  }
+  
+  .about-pic1-wrapper, .about-pic2-wrapper {
+    width: 32%;
+  }
+  .about-pic1-wrapper { right: -18%; top: 30%; }
+  .about-pic2-wrapper { right: -15%; bottom: 5%; }
+}
+
+/* REVEAL ANIMATIONS */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* STANDARD SECTIONS (Frames 3, 4, 5) */
 .standard-section {
   width: 100%;
