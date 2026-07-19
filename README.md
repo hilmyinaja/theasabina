@@ -1,0 +1,2 @@
+# Portofolionya Thea
+Bismillah
