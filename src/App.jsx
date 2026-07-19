@@ -18,6 +18,13 @@ import aboutSubject from './assets/images/Frame_2/Human Subject.png';
 import aboutPic1 from './assets/images/Frame_2/Picture 1.png';
 import aboutPic2 from './assets/images/Frame_2/Picture 2.png';
 
+// Frame 3 (TOC Section) Assets
+import tocTitle from './assets/images/Frame_3/Table of Contents.png';
+import toc1 from './assets/images/Frame_3/1. Campaign Architect.png';
+import toc2 from './assets/images/Frame_3/2. Social Media Brand Builder.png';
+import toc3 from './assets/images/Frame_3/3. Visual Storyteller.png';
+import toc4 from './assets/images/Frame_3/4. Brand Content Strategist.png';
+
 function App() {
   const customPictures = [pic1, pic2, pic3, pic4, pic5, pic6];
   const attachedObjects = {
@@ -30,8 +37,8 @@ function App() {
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.2 // Trigger when 20% visible
+      rootMargin: '50px',
+      threshold: 0.1 // Trigger earlier (when 10% visible)
     };
 
     const observerCallback = (entries, observer) => {
@@ -109,6 +116,30 @@ function App() {
           </div>
           <div className="about-pic2-wrapper">
             <img src={aboutPic2} alt="Presentation Picture" className="about-pic2" />
+          </div>
+        </div>
+      </section>
+
+      {/* TOC Section (Frame 3) */}
+      <section className="toc-section">
+        <div className="toc-container">
+          <div className="toc-title-wrapper reveal">
+            <img src={tocTitle} alt="Table of Contents" className="toc-title" />
+          </div>
+          
+          <div className="toc-items">
+            <div className="toc-item-wrapper toc-item-1 reveal">
+              <img src={toc1} alt="1. Campaign Architect" className="toc-item" />
+            </div>
+            <div className="toc-item-wrapper toc-item-3 reveal">
+              <img src={toc3} alt="3. Visual Storyteller" className="toc-item" />
+            </div>
+            <div className="toc-item-wrapper toc-item-2 reveal">
+              <img src={toc2} alt="2. Social Media Brand Builder" className="toc-item" />
+            </div>
+            <div className="toc-item-wrapper toc-item-4 reveal">
+              <img src={toc4} alt="4. Brand Content Strategist" className="toc-item" />
+            </div>
           </div>
         </div>
       </section>

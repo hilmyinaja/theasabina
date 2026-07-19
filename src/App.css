@@ -147,7 +147,7 @@
 /* ABOUT SECTION (Frame 3) */
 .about-section {
   width: 100%;
-  min-height: 100vh;
+  /* Removed min-height: 100vh so the section perfectly hugs the content */
   background-color: #FFCBFF;
   display: flex;
   justify-content: center;
@@ -159,7 +159,8 @@
 
 .about-container {
   position: relative;
-  width: clamp(300px, 85vw, 1200px);
+  width: clamp(300px, 95vw, 1600px); /* Enlarged again to be huge */
+  left: -8vw; /* Uses left instead of transform so .reveal doesn't overwrite it */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -173,9 +174,10 @@
 
 .about-subject-wrapper {
   position: absolute;
-  left: 2%; /* Adjusted to the right to match the reference */
-  bottom: 0;
-  height: 115%;
+  /* Now she's inside the container, we just offset her from the left edge */
+  left: 16%; 
+  bottom: -10vh; /* Pushes her exactly through the 10vh bottom padding of the section */
+  height: clamp(350px, 60vw, 950px);
   width: auto;
   z-index: 3;
   animation: floatSubject 5s ease-in-out infinite;
@@ -203,9 +205,9 @@
 
 .about-pic1-wrapper {
   position: absolute;
-  right: -15%; /* Brought slightly left to find the sweet spot */
-  top: 35%; /* Lowered significantly to sit right above Picture 2 */
-  width: 25%;
+  right: -16%; /* Pulled left slightly to overlap with the paper more naturally */
+  top: 33%; /* Raised higher to separate from Picture 2 vertically */
+  width: 23%; /* Enlarged */
   height: auto;
   z-index: 4; /* Higher z-index so it sits ON TOP of Picture 2 */
   animation: floatPic1 6s ease-in-out infinite;
@@ -224,9 +226,9 @@
 
 .about-pic2-wrapper {
   position: absolute;
-  right: -12%; /* Brought slightly left */
-  bottom: 5%; 
-  width: 25%;
+  right: -15%; /* Pulled left slightly to overlap with the paper more naturally */
+  bottom: 6%; /* Lowered to separate from Picture 1 vertically */
+  width: 27%; /* Enlarged */
   height: auto;
   z-index: 3; /* Lower z-index so it sits UNDER Picture 1 */
   animation: floatPic2 7s ease-in-out infinite;
@@ -256,16 +258,97 @@
 }
 
 @media (max-width: 768px) {
+  .about-section {
+    padding-bottom: 5vh; /* Remove massive vertical gap on mobile */
+  }
+
+  .about-container {
+    width: 90vw;
+    left: -5vw; /* Less aggressive shift on mobile to save screen space */
+  }
+
   .about-subject-wrapper {
-    height: 95%;
-    left: 0;
+    height: 90vw; /* Make her larger on mobile */
+    left: -4%; /* Align her perfectly with the starburst on mobile */
+    bottom: -5vh; /* Pushes her through the 5vh padding to touch the next section */
   }
   
   .about-pic1-wrapper, .about-pic2-wrapper {
-    width: 32%;
+    width: 35%;
   }
-  .about-pic1-wrapper { right: -18%; top: 30%; }
-  .about-pic2-wrapper { right: -15%; bottom: 5%; }
+  /* Keep pictures inside the screen bounds so they don't get cut off on the right */
+  .about-pic1-wrapper { right: -5%; top: 25%; }
+  .about-pic2-wrapper { right: -2%; bottom: 5%; }
+}
+
+/* TOC SECTION (Frame 3) */
+.toc-section {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #FF9FF3; /* Updated to correct pink */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10vh 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.toc-container {
+  width: clamp(300px, 95vw, 1400px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.toc-title-wrapper {
+  margin-bottom: clamp(30px, 5vw, 80px); /* Changed from vh to vw/clamp to stay proportional when zoomed out */
+  transition-delay: 0.1s;
+}
+
+.toc-title {
+  width: clamp(300px, 70vw, 1000px);
+  height: auto;
+}
+
+.toc-items {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.toc-item-wrapper {
+  /* Width auto-adjusts based on the image's height now */
+}
+
+/* Margins and alignment only. Width is handled by the image height */
+.toc-item-1 { align-self: flex-start; margin-left: -10%; transition-delay: 0.2s; }
+.toc-item-3 { align-self: flex-end; margin-right: -10%; margin-top: -15px; transition-delay: 0.3s; }
+.toc-item-2 { align-self: flex-start; margin-left: -5%; margin-top: 30px; transition-delay: 0.4s; }
+.toc-item-4 { align-self: flex-end; margin-right: -10%; margin-top: -5px; transition-delay: 0.5s; }
+
+.toc-item {
+  height: clamp(70px, 11vw, 150px); /* Middle ground: perfectly sized, not too small, not too big */
+  width: auto; /* Width will automatically adjust proportionally to the height */
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.toc-item:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+@media (max-width: 1024px) {
+  /* Use negative margin-top to pull them close together tightly, eliminating wide gaps */
+  .toc-item-1 { margin-left: 5% !important; margin-right: auto !important; margin-top: 0px !important; }
+  .toc-item-3 { margin-right: 5% !important; margin-left: auto !important; margin-top: -20px !important; }
+  .toc-item-2 { margin-left: 2% !important; margin-right: auto !important; margin-top: -10px !important; }
+  .toc-item-4 { margin-right: 2% !important; margin-left: auto !important; margin-top: -20px !important; }
+  
+  .toc-item {
+    height: clamp(50px, 12vw, 90px) !important; /* Increased for mobile as well */
+  }
 }
 
 /* REVEAL ANIMATIONS */
