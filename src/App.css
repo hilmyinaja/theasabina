@@ -410,3 +410,95 @@
   z-index: 2;
   transition: opacity 0.1s ease-out; /* Smooth out fast scrolling */
 }
+
+/* CAMPAIGN SECTION (Frame 4) */
+.campaign-section {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  /* background-image is set inline */
+  background-repeat: repeat;
+  background-size: 1400px; /* Made even larger, fixed size for a perfect seamless loop */
+  animation: moveDiagonalBg 20s linear infinite; /* Slowed down proportionally */
+}
+
+@keyframes moveDiagonalBg {
+  0% { background-position: 0 0; }
+  100% { background-position: -1400px 1400px; }
+}
+
+.campaign-container {
+  position: relative;
+  width: clamp(300px, 90vw, 1200px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.campaign-main-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.campaign-main-obj {
+  width: clamp(350px, 85vw, 1300px); /* Larger main object */
+  height: auto;
+  z-index: 2;
+  animation: floatMainObj 6s ease-in-out infinite;
+}
+
+@keyframes floatMainObj {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+.campaign-star {
+  position: absolute;
+  z-index: 3;
+}
+
+/* Star sizes & positions based on reference */
+.star-1 {
+  /* Large purple star bottom left */
+  width: clamp(100px, 18vw, 250px);
+  bottom: -5%;
+  left: -2%;
+  animation: floatRotateStar 7s ease-in-out infinite;
+}
+
+.star-2 {
+  /* Small pink star bottom left */
+  width: clamp(50px, 9vw, 120px);
+  bottom: 8%;
+  left: -8%;
+  animation: floatRotateStar 6s ease-in-out infinite reverse;
+}
+
+.star-3 {
+  /* Gold star top right */
+  width: clamp(80px, 15vw, 200px);
+  top: 15%;
+  right: 0%;
+  animation: floatRotateStar 8s ease-in-out infinite;
+}
+
+.star-4 {
+  /* Small purple star top right */
+  width: clamp(50px, 8vw, 100px);
+  top: 25%;
+  right: -5%;
+  animation: floatRotateStar 5s ease-in-out infinite reverse;
+}
+
+@keyframes floatRotateStar {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(15deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}

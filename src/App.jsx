@@ -25,6 +25,14 @@ import toc2 from './assets/images/Frame_3/2. Social Media Brand Builder.png';
 import toc3 from './assets/images/Frame_3/3. Visual Storyteller.png';
 import toc4 from './assets/images/Frame_3/4. Brand Content Strategist.png';
 
+// Frame 4 (Campaign Architect Section) Assets
+import frame4Bg from './assets/images/Frame_4/Background.png';
+import frame4MainObj from './assets/images/Frame_4/Main Object.png';
+import frame4Star1 from './assets/images/Frame_4/1. Bintang.png';
+import frame4Star2 from './assets/images/Frame_4/2. Bintang.png';
+import frame4Star3 from './assets/images/Frame_4/3. Bintang.png';
+import frame4Star4 from './assets/images/Frame_4/4. Bintang.png';
+
 function App() {
   const customPictures = [pic1, pic2, pic3, pic4, pic5, pic6];
   const attachedObjects = {
@@ -140,6 +148,21 @@ function App() {
             <div className="toc-item-wrapper toc-item-4 reveal">
               <img src={toc4} alt="4. Brand Content Strategist" className="toc-item" />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Campaign Architect Section (Frame 4) */}
+      <section className="campaign-section" style={{ backgroundImage: `url(${frame4Bg})` }}>
+        <div className="campaign-container">
+          <div className="campaign-main-wrapper reveal">
+            <img src={frame4MainObj} alt="Campaign Architect Main Object" className="campaign-main-obj" />
+            
+            {/* Stars */}
+            <img src={frame4Star1} alt="Star 1" className="campaign-star star-1" />
+            <img src={frame4Star2} alt="Star 2" className="campaign-star star-2" />
+            <img src={frame4Star3} alt="Star 3" className="campaign-star star-3" />
+            <img src={frame4Star4} alt="Star 4" className="campaign-star star-4" />
           </div>
         </div>
       </section>
