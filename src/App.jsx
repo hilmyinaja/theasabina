@@ -46,6 +46,7 @@ import f5FeatStar2 from './assets/images/Frame_5/2. Bintang Feature.png';
 import f5FeatStar3 from './assets/images/Frame_5/3. Bintang Feature.png';
 import f5FeatStar4 from './assets/images/Frame_5/4. Bintang Feature.png';
 import f5Reveal from './assets/images/Frame_5/Reveal Object.png';
+import f5Dove from './assets/images/Frame_5/Dove Object.png';
 
 function App() {
   const customPictures = [pic1, pic2, pic3, pic4, pic5, pic6];
@@ -76,26 +77,36 @@ function App() {
     const revealElements = document.querySelectorAll('.reveal');
     revealElements.forEach(el => observer.observe(el));
 
-    // Special observer for the reveal object so it can appear/disappear continuously
+    // Special observer for the reveal objects so they can appear/disappear continuously
     const toggleObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        const revealWrapper = document.querySelector('.p-reveal-wrapper');
-        if (revealWrapper) {
-          if (entry.isIntersecting) {
-            revealWrapper.classList.add('active');
-          } else {
-            revealWrapper.classList.remove('active');
+        if (entry.target.classList.contains('trigger-reveal')) {
+          const revealWrapper = document.querySelector('.p-reveal-wrapper');
+          if (revealWrapper) {
+            if (entry.isIntersecting) revealWrapper.classList.add('active');
+            else revealWrapper.classList.remove('active');
+          }
+        }
+        if (entry.target.classList.contains('trigger-dove')) {
+          const doveWrapper = document.querySelector('.p-dove-wrapper');
+          if (doveWrapper) {
+            if (entry.isIntersecting) doveWrapper.classList.add('active');
+            else doveWrapper.classList.remove('active');
           }
         }
       });
-    }, { threshold: 0.3 }); // Trigger when 30% of Panel 3 is visible
+    }, { threshold: 0.3 }); // Trigger when 30% of Panel is visible
 
-    const triggerEl = document.querySelector('.trigger-reveal');
-    if (triggerEl) toggleObserver.observe(triggerEl);
+    const triggerReveal = document.querySelector('.trigger-reveal');
+    if (triggerReveal) toggleObserver.observe(triggerReveal);
+    
+    const triggerDove = document.querySelector('.trigger-dove');
+    if (triggerDove) toggleObserver.observe(triggerDove);
 
     return () => {
       revealElements.forEach(el => observer.unobserve(el));
-      if (triggerEl) toggleObserver.unobserve(triggerEl);
+      if (triggerReveal) toggleObserver.unobserve(triggerReveal);
+      if (triggerDove) toggleObserver.unobserve(triggerDove);
     };
   }, []);
 
@@ -209,7 +220,14 @@ function App() {
               <div className="product-fixed-wrapper reveal">
                 <img src={f5Product} alt="Product Display" className="product-obj" />
                 
-                {/* Reveal Object lives in the sticky container so it doesn't move vertically */}
+                {/* Dove Object lives in the sticky container, triggered by Panel 2 */}
+                <div className="p-dove-wrapper reveal-zoom">
+                  <div className="p-dove-float">
+                    <img src={f5Dove} alt="Dove Object" className="p-dove-obj" />
+                  </div>
+                </div>
+
+                {/* Reveal Object lives in the sticky container, triggered by Panel 3 */}
                 <div className="p-reveal-wrapper reveal-zoom">
                   <div className="p-reveal-float">
                     <img src={f5Reveal} alt="Reveal Object" className="p-reveal-obj" />
@@ -234,7 +252,7 @@ function App() {
             </div>
 
             {/* Panel 2 */}
-            <div className="product-text-panel">
+            <div className="product-text-panel trigger-dove">
               <div className="product-text-wrapper reveal">
                 <img src={f5Text2} alt="Feature 1" className="product-text-obj" />
                 <img src={f5FeatStar1} alt="Star" className="p-fstar p-fstar-1" />

@@ -660,35 +660,44 @@
   position: absolute;
   right: 5%; /* Position over the hand on the right edge */
   top: 13%; /* Vertically align it over the hand */
-  width: clamp(575px, 20vw, 1000px); /* Adjust size to fit over the hand correctly */
+  width: clamp(700px, 20vw, 1000px); /* Adjust size to fit over the hand correctly */
   z-index: 10;
   pointer-events: auto; /* Explicitly allow pointer events here */
 }
 
+.p-dove-wrapper {
+  position: absolute;
+  right: 25%; /* Move it to the left */
+  top: 50%; /* Move it to the bottom of the Product Object */
+  width: clamp(700px, 20vw, 1000px); /* Keep the same size as reveal object */
+  z-index: 10;
+  pointer-events: auto;
+}
+
 /* Custom fade in & zoom in effect just for the reveal object */
-.p-reveal-wrapper.reveal-zoom {
+.p-reveal-wrapper.reveal-zoom, .p-dove-wrapper.reveal-zoom {
   transform: scale(0.5);
   opacity: 0;
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy zoom */
 }
 
-.p-reveal-wrapper.reveal-zoom.active {
+.p-reveal-wrapper.reveal-zoom.active, .p-dove-wrapper.reveal-zoom.active {
   transform: scale(1);
   opacity: 1;
 }
 
-.p-reveal-float {
+.p-reveal-float, .p-dove-float {
   width: 100%;
   animation: floatMainObj 6s ease-in-out infinite;
 }
 
-.p-reveal-obj {
+.p-reveal-obj, .p-dove-obj {
   width: 100%;
   height: auto;
   transition: transform 0.3s ease; /* Smooth hover transition */
   cursor: pointer;
 }
 
-.p-reveal-obj:hover {
+.p-reveal-obj:hover, .p-dove-obj:hover {
   transform: scale(1.1); /* Zoom in on hover */
 }
