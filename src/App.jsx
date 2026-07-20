@@ -33,6 +33,20 @@ import frame4Star2 from './assets/images/Frame_4/2. Bintang.png';
 import frame4Star3 from './assets/images/Frame_4/3. Bintang.png';
 import frame4Star4 from './assets/images/Frame_4/4. Bintang.png';
 
+// Frame 5 (Product Details Section) Assets
+import f5Text1 from './assets/images/Frame_5/1. Text Object.png';
+import f5Text2 from './assets/images/Frame_5/2. Text Object.png';
+import f5Text3 from './assets/images/Frame_5/3. Text Object.png';
+import f5Product from './assets/images/Frame_5/Product Object.png';
+import f5Star1 from './assets/images/Frame_5/1. Bintang.png';
+import f5Star2 from './assets/images/Frame_5/2. Bintang.png';
+import f5Star3 from './assets/images/Frame_5/3. Bintang.png';
+import f5FeatStar1 from './assets/images/Frame_5/1. Bintang Feature.png';
+import f5FeatStar2 from './assets/images/Frame_5/2. Bintang Feature.png';
+import f5FeatStar3 from './assets/images/Frame_5/3. Bintang Feature.png';
+import f5FeatStar4 from './assets/images/Frame_5/4. Bintang Feature.png';
+import f5Reveal from './assets/images/Frame_5/Reveal Object.png';
+
 function App() {
   const customPictures = [pic1, pic2, pic3, pic4, pic5, pic6];
   const attachedObjects = {
@@ -60,10 +74,29 @@ function App() {
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     const revealElements = document.querySelectorAll('.reveal');
-    
     revealElements.forEach(el => observer.observe(el));
 
-    return () => observer.disconnect();
+    // Special observer for the reveal object so it can appear/disappear continuously
+    const toggleObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const revealWrapper = document.querySelector('.p-reveal-wrapper');
+        if (revealWrapper) {
+          if (entry.isIntersecting) {
+            revealWrapper.classList.add('active');
+          } else {
+            revealWrapper.classList.remove('active');
+          }
+        }
+      });
+    }, { threshold: 0.3 }); // Trigger when 30% of Panel 3 is visible
+
+    const triggerEl = document.querySelector('.trigger-reveal');
+    if (triggerEl) toggleObserver.observe(triggerEl);
+
+    return () => {
+      revealElements.forEach(el => observer.unobserve(el));
+      if (triggerEl) toggleObserver.unobserve(triggerEl);
+    };
   }, []);
 
   return (
@@ -163,6 +196,65 @@ function App() {
             <img src={frame4Star2} alt="Star 2" className="campaign-star star-2" />
             <img src={frame4Star3} alt="Star 3" className="campaign-star star-3" />
             <img src={frame4Star4} alt="Star 4" className="campaign-star star-4" />
+          </div>
+        </div>
+      </section>
+
+      {/* Dove Biotin Hairfall Section (Frame 5) */}
+      <section className="product-section">
+        {/* Sticky Background & Right Content */}
+        <div className="product-sticky-layer">
+          <div className="product-half product-bg-left" style={{ backgroundImage: `url(${frame4Bg})` }}></div>
+            <div className="product-half product-bg-right">
+              <div className="product-fixed-wrapper reveal">
+                <img src={f5Product} alt="Product Display" className="product-obj" />
+                
+                {/* Reveal Object lives in the sticky container so it doesn't move vertically */}
+                <div className="p-reveal-wrapper reveal-zoom">
+                  <div className="p-reveal-float">
+                    <img src={f5Reveal} alt="Reveal Object" className="p-reveal-obj" />
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        {/* Scrolling Content (Left Side) */}
+        <div className="product-scroll-layer">
+          <div className="product-scroll-left">
+            
+            {/* Panel 1 */}
+            <div className="product-text-panel">
+              <div className="product-text-wrapper reveal">
+                <img src={f5Text1} alt="Dove Biotin Hairfall" className="product-text-obj" />
+                <img src={f5Star1} alt="Star" className="p-star p-star-1" />
+                <img src={f5Star2} alt="Star" className="p-star p-star-2" />
+                <img src={f5Star3} alt="Star" className="p-star p-star-3" />
+              </div>
+            </div>
+
+            {/* Panel 2 */}
+            <div className="product-text-panel">
+              <div className="product-text-wrapper reveal">
+                <img src={f5Text2} alt="Feature 1" className="product-text-obj" />
+                <img src={f5FeatStar1} alt="Star" className="p-fstar p-fstar-1" />
+                <img src={f5FeatStar2} alt="Star" className="p-fstar p-fstar-2" />
+                <img src={f5FeatStar3} alt="Star" className="p-fstar p-fstar-3" />
+                <img src={f5FeatStar4} alt="Star" className="p-fstar p-fstar-4" />
+              </div>
+            </div>
+
+            {/* Panel 3 */}
+            <div className="product-text-panel trigger-reveal">
+              <div className="product-text-wrapper reveal">
+                <img src={f5Text3} alt="Feature 2" className="product-text-obj" />
+                <img src={f5FeatStar1} alt="Star" className="p-fstar p-fstar-1" />
+                <img src={f5FeatStar2} alt="Star" className="p-fstar p-fstar-2" />
+                <img src={f5FeatStar3} alt="Star" className="p-fstar p-fstar-3" />
+                <img src={f5FeatStar4} alt="Star" className="p-fstar p-fstar-4" />
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
