@@ -48,6 +48,26 @@ import f5FeatStar4 from './assets/images/Frame_5/4. Bintang Feature.png';
 import f5Reveal from './assets/images/Frame_5/Reveal Object.png';
 import f5Dove from './assets/images/Frame_5/Dove Object.png';
 
+// Frame 6 Assets
+import f6Bg from './assets/images/Frame_6/Background Back.png';
+import f6MainObj from './assets/images/Frame_6/Main Object.png';
+import f6Text1 from './assets/images/Frame_6/1. Text Object.png';
+import f6Text2 from './assets/images/Frame_6/2. Text Object.png';
+import f6Text3 from './assets/images/Frame_6/3. Text Object.png';
+import f6Text4 from './assets/images/Frame_6/4. Text Object.png';
+import f6Star1 from './assets/images/Frame_6/1. Bintang.png';
+import f6Star2 from './assets/images/Frame_6/2. Bintang.png';
+import f6Star3 from './assets/images/Frame_6/3. Bintang.png';
+import f6FeatStar1 from './assets/images/Frame_6/1. Bintang Feature.png';
+import f6FeatStar2 from './assets/images/Frame_6/2. Bintang Feature.png';
+import f6FeatStar3 from './assets/images/Frame_6/3. Bintang Feature.png';
+import f6FeatStar4 from './assets/images/Frame_6/4. Bintang Feature.png';
+import f6Shadow from './assets/images/Frame_6/Shadow.png';
+import f6Mirror from './assets/images/Frame_6/Mirror.png';
+import f6Paper from './assets/images/Frame_6/Paper.png';
+import f6Pen from './assets/images/Frame_6/Pen.png';
+import f6Qr from './assets/images/Frame_6/QR.png';
+
 function App() {
   const customPictures = [pic1, pic2, pic3, pic4, pic5, pic6];
   const attachedObjects = {
@@ -94,19 +114,54 @@ function App() {
             else doveWrapper.classList.remove('active');
           }
         }
+        
+        // Frame 6 triggers
+        if (entry.target.classList.contains('trigger-mirror')) {
+          const wrapper = document.querySelector('.p-mirror-wrapper');
+          if (wrapper) {
+            if (entry.isIntersecting) wrapper.classList.add('active');
+            else wrapper.classList.remove('active');
+          }
+        }
+        if (entry.target.classList.contains('trigger-paper-pen')) {
+          const wrapper = document.querySelector('.p-paperpen-wrapper');
+          if (wrapper) {
+            if (entry.isIntersecting) wrapper.classList.add('active');
+            else wrapper.classList.remove('active');
+          }
+        }
+        if (entry.target.classList.contains('trigger-qr')) {
+          const wrapper = document.querySelector('.p-qr-wrapper');
+          if (wrapper) {
+            if (entry.isIntersecting) wrapper.classList.add('active');
+            else wrapper.classList.remove('active');
+          }
+        }
       });
     }, { threshold: 0.3 }); // Trigger when 30% of Panel is visible
 
     const triggerReveal = document.querySelector('.trigger-reveal');
     if (triggerReveal) toggleObserver.observe(triggerReveal);
-    
+
     const triggerDove = document.querySelector('.trigger-dove');
     if (triggerDove) toggleObserver.observe(triggerDove);
+
+    const triggerMirror = document.querySelector('.trigger-mirror');
+    if (triggerMirror) toggleObserver.observe(triggerMirror);
+
+    const triggerPaperPen = document.querySelector('.trigger-paper-pen');
+    if (triggerPaperPen) toggleObserver.observe(triggerPaperPen);
+
+    const triggerQr = document.querySelector('.trigger-qr');
+    if (triggerQr) toggleObserver.observe(triggerQr);
 
     return () => {
       revealElements.forEach(el => observer.unobserve(el));
       if (triggerReveal) toggleObserver.unobserve(triggerReveal);
       if (triggerDove) toggleObserver.unobserve(triggerDove);
+      if (triggerMirror) toggleObserver.unobserve(triggerMirror);
+      if (triggerPaperPen) toggleObserver.unobserve(triggerPaperPen);
+      if (triggerQr) toggleObserver.unobserve(triggerQr);
     };
   }, []);
 
@@ -114,7 +169,7 @@ function App() {
     <div className="portfolio-container">
       {/* Custom Hero Carousel */}
       <section className="hero-section">
-        
+
         {/* Header Text (Normal Document Flow) */}
         <div className="hero-header-text">
           <h1 className="hero-this-is">this is</h1>
@@ -132,18 +187,18 @@ function App() {
           <div className="hero-picture-track">
             {customPictures.map((pic, idx) => (
               <div key={`pic-a-${idx}`} className="hero-picture-wrapper">
-                <img src={pic} alt={`Picture ${idx+1}`} className="hero-picture" />
+                <img src={pic} alt={`Picture ${idx + 1}`} className="hero-picture" />
                 {attachedObjects[idx] && (
-                  <img src={attachedObjects[idx]} alt={`Object for pic ${idx+1}`} className="hero-attached-object" />
+                  <img src={attachedObjects[idx]} alt={`Object for pic ${idx + 1}`} className="hero-attached-object" />
                 )}
               </div>
             ))}
             {/* Duplicated for infinite scroll loop */}
             {customPictures.map((pic, idx) => (
               <div key={`pic-b-${idx}`} className="hero-picture-wrapper">
-                <img src={pic} alt={`Picture ${idx+1} clone`} className="hero-picture" />
+                <img src={pic} alt={`Picture ${idx + 1} clone`} className="hero-picture" />
                 {attachedObjects[idx] && (
-                  <img src={attachedObjects[idx]} alt={`Object for pic ${idx+1} clone`} className="hero-attached-object" />
+                  <img src={attachedObjects[idx]} alt={`Object for pic ${idx + 1} clone`} className="hero-attached-object" />
                 )}
               </div>
             ))}
@@ -156,12 +211,12 @@ function App() {
         <div className="about-container reveal">
           {/* Main Background/Text Box */}
           <img src={aboutContent} alt="About Text Content" className="about-content-bg" />
-          
+
           {/* Overlapping Subject on Left */}
           <div className="about-subject-wrapper">
             <img src={aboutSubject} alt="Thea Speaking" className="about-subject" />
           </div>
-          
+
           {/* Overlapping Pictures on Right */}
           <div className="about-pic1-wrapper">
             <img src={aboutPic1} alt="Certificate Picture" className="about-pic1" />
@@ -178,7 +233,7 @@ function App() {
           <div className="toc-title-wrapper reveal">
             <img src={tocTitle} alt="Table of Contents" className="toc-title" />
           </div>
-          
+
           <div className="toc-items">
             <div className="toc-item-wrapper toc-item-1 reveal">
               <img src={toc1} alt="1. Campaign Architect" className="toc-item" />
@@ -201,7 +256,7 @@ function App() {
         <div className="campaign-container">
           <div className="campaign-main-wrapper reveal">
             <img src={frame4MainObj} alt="Campaign Architect Main Object" className="campaign-main-obj" />
-            
+
             {/* Stars */}
             <img src={frame4Star1} alt="Star 1" className="campaign-star star-1" />
             <img src={frame4Star2} alt="Star 2" className="campaign-star star-2" />
@@ -216,31 +271,31 @@ function App() {
         {/* Sticky Background & Right Content */}
         <div className="product-sticky-layer">
           <div className="product-half product-bg-left" style={{ backgroundImage: `url(${frame4Bg})` }}></div>
-            <div className="product-half product-bg-right">
-              <div className="product-fixed-wrapper reveal">
-                <img src={f5Product} alt="Product Display" className="product-obj" />
-                
-                {/* Dove Object lives in the sticky container, triggered by Panel 2 */}
-                <div className="p-dove-wrapper reveal-zoom">
-                  <div className="p-dove-float">
-                    <img src={f5Dove} alt="Dove Object" className="p-dove-obj" />
-                  </div>
-                </div>
+          <div className="product-half product-bg-right">
+            <div className="product-fixed-wrapper reveal">
+              <img src={f5Product} alt="Product Display" className="product-obj" />
 
-                {/* Reveal Object lives in the sticky container, triggered by Panel 3 */}
-                <div className="p-reveal-wrapper reveal-zoom">
-                  <div className="p-reveal-float">
-                    <img src={f5Reveal} alt="Reveal Object" className="p-reveal-obj" />
-                  </div>
+              {/* Dove Object lives in the sticky container, triggered by Panel 2 */}
+              <div className="p-dove-wrapper reveal-zoom">
+                <div className="p-dove-float">
+                  <img src={f5Dove} alt="Dove Object" className="p-dove-obj" />
+                </div>
+              </div>
+
+              {/* Reveal Object lives in the sticky container, triggered by Panel 3 */}
+              <div className="p-reveal-wrapper reveal-zoom">
+                <div className="p-reveal-float">
+                  <img src={f5Reveal} alt="Reveal Object" className="p-reveal-obj" />
                 </div>
               </div>
             </div>
+          </div>
         </div>
 
         {/* Scrolling Content (Left Side) */}
         <div className="product-scroll-layer">
           <div className="product-scroll-left">
-            
+
             {/* Panel 1 */}
             <div className="product-text-panel">
               <div className="product-text-wrapper reveal">
@@ -276,8 +331,85 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* Frame 6 Section */}
+      <section className="puzzle-section">
+        {/* Sticky Background & Right Content */}
+        <div className="puzzle-sticky-layer">
+          <div className="puzzle-half puzzle-bg-left" style={{ backgroundImage: `url(${f6Bg})` }}></div>
+            <div className="puzzle-half puzzle-bg-right">
+              <div className="puzzle-fixed-wrapper">
+                <img src={f6Shadow} alt="Shadow" className="puzzle-shadow" />
+                <img src={f6MainObj} alt="Puzzle Main Display" className="puzzle-obj" />
+
+                {/* Popups */}
+                <div className="p-mirror-wrapper reveal-zoom">
+                  <img src={f6Mirror} alt="Mirror" className="p-mirror-obj p-popup-float" />
+                </div>
+                <div className="p-paperpen-wrapper reveal-zoom">
+                  <img src={f6Paper} alt="Paper" className="p-paper-obj p-popup-float" />
+                  <img src={f6Pen} alt="Pen" className="p-pen-obj p-popup-float" />
+                </div>
+                <div className="p-qr-wrapper reveal-zoom">
+                  <img src={f6Qr} alt="QR" className="p-qr-obj p-popup-float" />
+                </div>
+              </div>
+            </div>
+        </div>
+
+        {/* Scrolling Content (Left Side) */}
+        <div className="puzzle-scroll-layer">
+          <div className="puzzle-scroll-left">
+            
+            {/* Panel 1 */}
+            <div className="product-text-panel">
+              <div className="product-text-wrapper reveal">
+                <img src={f6Text1} alt="Feature 1 Title" className="product-text-obj" />
+                <img src={f6Star1} alt="Star" className="p-star p-star-1" />
+                <img src={f6Star2} alt="Star" className="p-star p-star-2" />
+                <img src={f6Star3} alt="Star" className="p-star p-star-3" />
+              </div>
+            </div>
+
+            {/* Panel 2 */}
+            <div className="product-text-panel trigger-mirror">
+              <div className="product-text-wrapper reveal">
+                <img src={f6Text2} alt="Feature 1 Details" className="product-text-obj" />
+                <img src={f6FeatStar1} alt="Star" className="p-fstar p-fstar-1" />
+                <img src={f6FeatStar2} alt="Star" className="p-fstar p-fstar-2" />
+                <img src={f6FeatStar3} alt="Star" className="p-fstar p-fstar-3" />
+                <img src={f6FeatStar4} alt="Star" className="p-fstar p-fstar-4" />
+              </div>
+            </div>
+
+            {/* Panel 3 */}
+            <div className="product-text-panel trigger-paper-pen">
+              <div className="product-text-wrapper reveal">
+                <img src={f6Text3} alt="Feature 2" className="product-text-obj" />
+                <img src={f6FeatStar1} alt="Star" className="p-fstar p-fstar-1" />
+                <img src={f6FeatStar2} alt="Star" className="p-fstar p-fstar-2" />
+                <img src={f6FeatStar3} alt="Star" className="p-fstar p-fstar-3" />
+                <img src={f6FeatStar4} alt="Star" className="p-fstar p-fstar-4" />
+              </div>
+            </div>
+
+            {/* Panel 4 */}
+            <div className="product-text-panel trigger-qr">
+              <div className="product-text-wrapper reveal">
+                <img src={f6Text4} alt="Feature 3" className="product-text-obj" />
+                <img src={f6FeatStar1} alt="Star" className="p-fstar p-fstar-1" />
+                <img src={f6FeatStar2} alt="Star" className="p-fstar p-fstar-2" />
+                <img src={f6FeatStar3} alt="Star" className="p-fstar p-fstar-3" />
+                <img src={f6FeatStar4} alt="Star" className="p-fstar p-fstar-4" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
 
 export default App;
+
