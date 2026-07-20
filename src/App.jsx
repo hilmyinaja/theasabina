@@ -84,11 +84,17 @@ function App() {
       threshold: 0.1 // Trigger earlier (when 10% visible)
     };
 
-    const observerCallback = (entries, observer) => {
+    const observerCallback = (entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
-          observer.unobserve(entry.target);
+          if (!entry.target.classList.contains('reveal-repeat')) {
+            observer.unobserve(entry.target);
+          }
+        } else {
+          if (entry.target.classList.contains('reveal-repeat')) {
+            entry.target.classList.remove('active');
+          }
         }
       });
     };
@@ -139,6 +145,28 @@ function App() {
         }
       });
     }, { threshold: 0.3 }); // Trigger when 30% of Panel is visible
+
+    // Dynamic scroll snap toggler for Sections 5 and 6
+    const snapToggleObserver = new IntersectionObserver((entries) => {
+      let isSnapping = false;
+      const allSections = document.querySelectorAll('.product-section, .puzzle-section');
+      allSections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        // Check if the center of the screen is looking at this section
+        const screenCenter = window.innerHeight / 2;
+        if (rect.top <= screenCenter && rect.bottom >= screenCenter) {
+          isSnapping = true;
+        }
+      });
+      if (isSnapping) {
+        document.documentElement.style.scrollSnapType = 'y mandatory';
+      } else {
+        document.documentElement.style.scrollSnapType = 'none';
+      }
+    }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] });
+
+    const snapSections = document.querySelectorAll('.product-section, .puzzle-section');
+    snapSections.forEach(sec => snapToggleObserver.observe(sec));
 
     const triggerReveal = document.querySelector('.trigger-reveal');
     if (triggerReveal) toggleObserver.observe(triggerReveal);
@@ -298,7 +326,7 @@ function App() {
 
             {/* Panel 1 */}
             <div className="product-text-panel">
-              <div className="product-text-wrapper reveal">
+              <div className="product-text-wrapper reveal reveal-repeat">
                 <img src={f5Text1} alt="Dove Biotin Hairfall" className="product-text-obj" />
                 <img src={f5Star1} alt="Star" className="p-star p-star-1" />
                 <img src={f5Star2} alt="Star" className="p-star p-star-2" />
@@ -308,7 +336,7 @@ function App() {
 
             {/* Panel 2 */}
             <div className="product-text-panel trigger-dove">
-              <div className="product-text-wrapper reveal">
+              <div className="product-text-wrapper reveal reveal-repeat">
                 <img src={f5Text2} alt="Feature 1" className="product-text-obj" />
                 <img src={f5FeatStar1} alt="Star" className="p-fstar p-fstar-1" />
                 <img src={f5FeatStar2} alt="Star" className="p-fstar p-fstar-2" />
@@ -319,7 +347,7 @@ function App() {
 
             {/* Panel 3 */}
             <div className="product-text-panel trigger-reveal">
-              <div className="product-text-wrapper reveal">
+              <div className="product-text-wrapper reveal reveal-repeat">
                 <img src={f5Text3} alt="Feature 2" className="product-text-obj" />
                 <img src={f5FeatStar1} alt="Star" className="p-fstar p-fstar-1" />
                 <img src={f5FeatStar2} alt="Star" className="p-fstar p-fstar-2" />
@@ -344,14 +372,20 @@ function App() {
 
                 {/* Popups */}
                 <div className="p-mirror-wrapper reveal-zoom">
-                  <img src={f6Mirror} alt="Mirror" className="p-mirror-obj p-popup-float" />
+                  <div className="p-popup-float">
+                    <img src={f6Mirror} alt="Mirror" className="p-mirror-obj p-popup-obj" />
+                  </div>
                 </div>
                 <div className="p-paperpen-wrapper reveal-zoom">
-                  <img src={f6Paper} alt="Paper" className="p-paper-obj p-popup-float" />
-                  <img src={f6Pen} alt="Pen" className="p-pen-obj p-popup-float" />
+                  <div className="p-popup-float">
+                    <img src={f6Paper} alt="Paper" className="p-paper-obj p-popup-obj" />
+                    <img src={f6Pen} alt="Pen" className="p-pen-obj p-popup-obj" />
+                  </div>
                 </div>
                 <div className="p-qr-wrapper reveal-zoom">
-                  <img src={f6Qr} alt="QR" className="p-qr-obj p-popup-float" />
+                  <div className="p-popup-float">
+                    <img src={f6Qr} alt="QR" className="p-qr-obj p-popup-obj" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -363,7 +397,7 @@ function App() {
             
             {/* Panel 1 */}
             <div className="product-text-panel">
-              <div className="product-text-wrapper reveal">
+              <div className="product-text-wrapper reveal reveal-repeat">
                 <img src={f6Text1} alt="Feature 1 Title" className="product-text-obj" />
                 <img src={f6Star1} alt="Star" className="p-star p-star-1" />
                 <img src={f6Star2} alt="Star" className="p-star p-star-2" />
@@ -373,7 +407,7 @@ function App() {
 
             {/* Panel 2 */}
             <div className="product-text-panel trigger-mirror">
-              <div className="product-text-wrapper reveal">
+              <div className="product-text-wrapper reveal reveal-repeat">
                 <img src={f6Text2} alt="Feature 1 Details" className="product-text-obj" />
                 <img src={f6FeatStar1} alt="Star" className="p-fstar p-fstar-1" />
                 <img src={f6FeatStar2} alt="Star" className="p-fstar p-fstar-2" />
@@ -384,7 +418,7 @@ function App() {
 
             {/* Panel 3 */}
             <div className="product-text-panel trigger-paper-pen">
-              <div className="product-text-wrapper reveal">
+              <div className="product-text-wrapper reveal reveal-repeat">
                 <img src={f6Text3} alt="Feature 2" className="product-text-obj" />
                 <img src={f6FeatStar1} alt="Star" className="p-fstar p-fstar-1" />
                 <img src={f6FeatStar2} alt="Star" className="p-fstar p-fstar-2" />
@@ -395,7 +429,7 @@ function App() {
 
             {/* Panel 4 */}
             <div className="product-text-panel trigger-qr">
-              <div className="product-text-wrapper reveal">
+              <div className="product-text-wrapper reveal reveal-repeat">
                 <img src={f6Text4} alt="Feature 3" className="product-text-obj" />
                 <img src={f6FeatStar1} alt="Star" className="p-fstar p-fstar-1" />
                 <img src={f6FeatStar2} alt="Star" className="p-fstar p-fstar-2" />

@@ -10,11 +10,9 @@
 .hero-section {
   width: 100%;
   height: auto;
-  /* Let the section shrink to fit its content instead of forcing 100vh */
   position: relative;
   overflow: hidden;
   background-color: #FFCBFF;
-  /* Match the portfolio background */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -185,14 +183,12 @@
 /* ABOUT SECTION (Frame 3) */
 .about-section {
   width: 100%;
-  /* Removed min-height: 100vh so the section perfectly hugs the content */
   background-color: #FFCBFF;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10vh 0;
   position: relative;
-  /* Removed overflow: hidden so Thea's head isn't clipped when zoomed */
 }
 
 .about-container {
@@ -369,12 +365,10 @@
   }
 }
 
-/* TOC SECTION (Frame 3) */
 .toc-section {
   width: 100%;
   min-height: 100vh;
   background-color: #FF9FF3;
-  /* Updated to correct pink */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -490,12 +484,22 @@
 .reveal {
   opacity: 0;
   transform: translateY(50px);
-  transition: all 1s ease-out;
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
+  animation: floatPanel 4s ease-in-out infinite 0.8s;
+}
+
+@keyframes floatPanel {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 /* STANDARD SECTIONS (Frames 3, 4, 5) */
@@ -556,14 +560,11 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  /* background-image is set inline */
   background-repeat: repeat;
   background-size: 1400px;
-  /* Made even larger, fixed size for a perfect seamless loop */
   background-attachment: fixed;
-  /* Ensures continuous background across sections */
   animation: moveDiagonalBg 20s linear infinite;
-  /* Slowed down proportionally */
+  scroll-snap-align: end;
 }
 
 @keyframes moveDiagonalBg {
@@ -756,6 +757,12 @@
   justify-content: center;
   align-items: center;
   padding: 10vh 0;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .product-text-wrapper {
@@ -768,6 +775,18 @@
   height: auto;
   position: relative;
   z-index: 2;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.reveal.active .product-text-obj {
+  animation: textObjBounce 1s ease-in-out forwards;
+}
+
+@keyframes textObjBounce {
+  0% { transform: translateY(40px); }
+  40% { transform: translateY(-20px); }
+  70% { transform: translateY(10px); }
+  100% { transform: translateY(0); }
 }
 
 .p-star,
@@ -1039,13 +1058,17 @@
 
 .p-popup-float {
   width: 100%;
-  height: auto;
   animation: floatMainObj 6s ease-in-out infinite;
+}
+
+.p-popup-obj {
+  width: 100%;
+  height: auto;
   transition: transform 0.3s ease;
   cursor: pointer;
 }
 
-.p-popup-float:hover {
+.p-popup-obj:hover {
   transform: scale(1.1);
 }
 
