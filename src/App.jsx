@@ -99,6 +99,21 @@ import f8Star2 from './assets/images/Frame_8/2. Bintang Object.png';
 import f8Star3 from './assets/images/Frame_8/3. Bintang Object.png';
 import f8Star4 from './assets/images/Frame_8/4. Bintang Object.png';
 
+// Frame 9 (Section 9) Assets
+import f9P2Text1 from './assets/images/Frame_9/1. Main Text Object.png';
+import f9P2Paper from './assets/images/Frame_9/Paper Object.png';
+import f9P2Star1 from './assets/images/Frame_9/1. Bintang TL.png';
+import f9P2Star2 from './assets/images/Frame_9/2. Bintang BR S.png';
+import f9P2Star3 from './assets/images/Frame_9/3. Bintang BR B.png';
+import f9P2Circle from './assets/images/Frame_9/Circle.png';
+import f9P2Human from './assets/images/Frame_9/Human Subject.png';
+import f9P2TextObj from './assets/images/Frame_9/Text Object.png';
+import f9P2Badge1 from './assets/images/Frame_9/GERIGI TL.png';
+import f9P2Badge2 from './assets/images/Frame_9/UKEX TR.png';
+import f9P3Text2 from './assets/images/Frame_9/2. Main Text Object.png';
+import f9P3Tweet1 from './assets/images/Frame_9/TweetGERIGI.png';
+import f9P3Tweet2 from './assets/images/Frame_9/TweetUKEX.png';
+
 // Frame 10
 import f10Bg from './assets/images/Frame_10/Background.png';
 import f10MainObj from './assets/images/Frame_10/Main Object.png';
@@ -309,7 +324,7 @@ function App() {
     // Dynamic scroll snap toggler for Sections 5, 6, and 7
     const snapToggleObserver = new IntersectionObserver((entries) => {
         let isSnapping = false;
-        const allSections = document.querySelectorAll('.product-section, .puzzle-section, .voice-section, .campaign11-section, .campaign11-p3-section, .campaign11-p4-section, .campaign11-p5-section, .campaign11-p6-section, .campaign13-section, .campaign13-p3-section, .campaign13-p4-section, .campaign14-section');
+        const allSections = document.querySelectorAll('.product-section, .puzzle-section, .voice-section, .campaign9-p2-section, .campaign11-section, .campaign11-p3-section, .campaign11-p4-section, .campaign11-p5-section, .campaign11-p6-section, .campaign13-section, .campaign13-p3-section, .campaign13-p4-section, .campaign14-section');
         allSections.forEach(sec => {
         const rect = sec.getBoundingClientRect();
         const screenCenter = window.innerHeight / 2;
@@ -326,7 +341,7 @@ function App() {
       }
     }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] });
 
-    const snapSections = document.querySelectorAll('.product-section, .puzzle-section, .voice-section, .campaign11-section, .campaign11-p3-section, .campaign11-p4-section, .campaign11-p5-section, .campaign11-p6-section, .campaign13-section, .campaign13-p3-section, .campaign13-p4-section, .campaign14-section');
+    const snapSections = document.querySelectorAll('.product-section, .puzzle-section, .voice-section, .campaign9-p2-section, .campaign11-section, .campaign11-p3-section, .campaign11-p4-section, .campaign11-p5-section, .campaign11-p6-section, .campaign13-section, .campaign13-p3-section, .campaign13-p4-section, .campaign14-section');
     snapSections.forEach(sec => snapToggleObserver.observe(sec));
 
     const triggerReveal = document.querySelector('.trigger-reveal');
@@ -710,6 +725,37 @@ function App() {
             <img src={f8Star3} alt="Star" className="campaign8-star c8-star-3" />
             <img src={f8Star4} alt="Star" className="campaign8-star c8-star-4" />
           </div>
+        </div>
+      </section>
+
+      {/* Section 9 Panel 2 (Frame 39) */}
+      <section className="campaign9-p2-section">
+        <div className="c9-p2-container">
+          
+          <div className="c9-p2-left reveal">
+            <div className="c9-p2-text-wrapper">
+              <img src={f9P2TextObj} alt="Main Text" className="c9-p2-main-text" />
+              <img src={f9P2Paper} alt="Paper" className="c9-p2-paper" />
+              <img src={f9P2Star1} alt="Star" className="c9-p2-star c9-p2-star-1" />
+              <img src={f9P2Star2} alt="Star" className="c9-p2-star c9-p2-star-2" />
+              <img src={f9P2Star3} alt="Star" className="c9-p2-star c9-p2-star-3" />
+            </div>
+          </div>
+
+          <div className="c9-p2-right reveal">
+            <div className="c9-p2-human-wrapper">
+              <img src={f9P2Circle} alt="Pink Circle" className="c9-p2-circle" />
+              <img src={f9P2Human} alt="Human Subject" className="c9-p2-human" />
+              <img src={f9P2Text1} alt="Text Object" className="c9-p2-text-obj" />
+              <div className="c9-p2-badge-wrapper c9-p2-badge-1">
+                <img src={f9P2Badge1} alt="GERIGI Badge" className="c9-p2-badge-img" />
+              </div>
+              <div className="c9-p2-badge-wrapper c9-p2-badge-2">
+                <img src={f9P2Badge2} alt="UKEX Badge" className="c9-p2-badge-img" />
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
