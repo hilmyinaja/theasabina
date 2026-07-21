@@ -1879,3 +1879,395 @@ html {
   left: 20%;
   animation: floatRotateStar 8s ease-in-out infinite reverse;
 }
+
+/* CAMPAIGN 12 SECTION (Frame 12) */
+.campaign12-section {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  scroll-snap-align: start;
+  /* Background properties similar to campaign-section */
+  background-size: 1400px auto;
+  background-position: 0 0;
+  animation: moveDownBg 15s linear infinite; /* Animation moves downwards */
+}
+
+/* Fallback for bg anim */
+@keyframes moveDownBg {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 1400px;
+  }
+}
+
+.campaign12-star {
+  position: absolute;
+  z-index: 3;
+}
+
+.c12-star-1 {
+  /* Big yellow star top right */
+  width: clamp(80px, 15vw, 200px);
+  top: 15%;
+  right: 5%;
+  animation: floatRotateStar 8s ease-in-out infinite;
+}
+
+.c12-star-2 {
+  /* Small pink star top right */
+  width: clamp(50px, 8vw, 100px);
+  top: 30%;
+  right: 15%;
+  animation: floatRotateStar 5s ease-in-out infinite reverse;
+}
+
+.c12-star-3 {
+  /* Small pink star bottom left */
+  width: clamp(50px, 9vw, 120px);
+  bottom: 15%;
+  left: 10%;
+  animation: floatRotateStar 6s ease-in-out infinite reverse;
+}
+
+.c12-star-4 {
+  /* Big purple star bottom left */
+  width: clamp(80px, 15vw, 180px);
+  bottom: -2%;
+  left: -2%;
+  animation: floatRotateStar 7s ease-in-out infinite;
+}
+
+/* CAMPAIGN 13 SECTION (Frame 13) */
+.campaign13-section {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #FFD1C1; /* Peach orange */
+  scroll-snap-align: start;
+  padding: 5vh 0;
+}
+
+.c13-container {
+  width: clamp(300px, 90vw, 1200px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+  margin-top: 15vh; /* Menurunkan sedikit agar tidak terpotong */
+}
+
+@media (max-width: 900px) {
+  .c13-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+.c13-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.c13-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.c13-iphone-wrapper {
+  position: relative;
+  width: clamp(250px, 35vw, 450px);
+  animation: floatMainObj 6s ease-in-out infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.c13-iphone {
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.c13-iphone-video {
+  position: absolute;
+  top: 1%;
+  left: 3%;
+  width: 78%;
+  height: 90%;
+  object-fit: cover;
+  border-radius: 40px;
+  z-index: 2;
+}
+
+.c13-text-wrapper {
+  position: relative;
+}
+
+.c13-purple-paper {
+  width: clamp(650px, 45vw, 1000px);
+  height: auto;
+}
+
+.c13-pink-ribbon {
+  position: absolute;
+  top: -9%;
+  left: -2%;
+  width: 82%;
+  height: auto;
+  z-index: 2;
+  transform: rotate(-2deg);
+}
+
+.c13-star {
+  position: absolute;
+  z-index: 3;
+}
+
+.c13-star-1 {
+  /* Purple star top right */
+  width: clamp(40px, 7vw, 60px);
+  top: -12%;
+  right: 15%;
+  animation: floatRotateStar 7s ease-in-out infinite;
+}
+
+.c13-star-2 {
+  /* Purple star top left near ribbon */
+  width: clamp(30px, 5vw, 70px);
+  top: 5%;
+  left: -8%;
+  animation: floatRotateStar 6s ease-in-out infinite reverse;
+}
+
+.c13-star-3 {
+  /* Yellow star bottom left */
+  width: clamp(100px, 15vw, 180px);
+  bottom: -2%;
+  left: -5%;
+  animation: floatRotateStar 5s ease-in-out infinite;
+}
+
+.c13-star-4 {
+  /* Blue star bottom left */
+  width: clamp(50px, 8vw, 100px);
+  bottom: -2%;
+  left: 16%;
+  animation: floatRotateStar 8s ease-in-out infinite reverse;
+}
+
+/* CAMPAIGN 13 PANEL 3 SECTION (Frame 29) */
+.campaign13-p3-section {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #FF9AE5; /* Magenta pink */
+  scroll-snap-align: start;
+  padding: 5vh 0;
+}
+
+.c13-p3-container {
+  width: clamp(300px, 90vw, 1200px);
+  display: flex;
+  flex-direction: row; /* Text left, iPhone right */
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+  margin-top: 15vh;
+}
+
+@media (max-width: 900px) {
+  .c13-p3-container {
+    flex-direction: column-reverse; /* Put iPhone on top on mobile */
+    gap: 2rem;
+  }
+}
+
+.c13-p3-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.c13-p3-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.c13-p3-text-wrapper {
+  position: relative;
+}
+
+.c13-p3-purple-paper {
+  width: clamp(650px, 45vw, 1000px);
+  height: auto;
+}
+
+.c13-p3-purple-ribbon {
+  position: absolute;
+  top: -11%;
+  left: -2%;
+  width: 82%;
+  height: auto;
+  z-index: 2;
+  transform: rotate(-2deg);
+}
+
+.c13-p3-star {
+  position: absolute;
+  z-index: 3;
+}
+
+.c13-p3-star-1 {
+  /* Yellow star top center */
+  width: clamp(40px, 7vw, 50px);
+  top: -14%;
+  right: 18%;
+  animation: floatRotateStar 7s ease-in-out infinite;
+}
+
+.c13-p3-star-2 {
+  /* Small purple star top left */
+  width: clamp(30px, 5vw, 70px);
+  top: 3%;
+  left: -7%;
+  animation: floatRotateStar 6s ease-in-out infinite reverse;
+}
+
+.c13-p3-star-3 {
+  /* Big yellow star bottom right */
+  width: clamp(100px, 15vw, 180px);
+  bottom: 3%;
+  right: 8%;
+  animation: floatRotateStar 5s ease-in-out infinite;
+}
+
+.c13-p3-star-4 {
+  /* Blue star bottom right next to yellow */
+  width: clamp(50px, 8vw, 100px);
+  bottom: -1%;
+  right: -3%;
+  animation: floatRotateStar 8s ease-in-out infinite reverse;
+}
+
+/* CAMPAIGN 13 PANEL 4 SECTION (Frame 30) */
+.campaign13-p4-section {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #FCF5C7; /* Pale yellow */
+  scroll-snap-align: start;
+  padding: 5vh 0;
+}
+
+.c13-p4-container {
+  width: clamp(300px, 90vw, 1200px);
+  display: flex;
+  flex-direction: row; /* iPhone left, Text right */
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+  margin-top: 15vh;
+}
+
+@media (max-width: 900px) {
+  .c13-p4-container {
+    flex-direction: column; /* iPhone top, Text bottom */
+    gap: 2rem;
+  }
+}
+
+.c13-p4-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.c13-p4-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.c13-p4-text-wrapper {
+  position: relative;
+}
+
+.c13-p4-purple-paper {
+  width: clamp(650px, 45vw, 1000px);
+  height: auto;
+}
+
+.c13-p4-pink-ribbon {
+  position: absolute;
+  top: -11%;
+  left: -2%;
+  width: 82%;
+  height: auto;
+  z-index: 2;
+  transform: rotate(-2deg);
+}
+
+.c13-p4-star {
+  position: absolute;
+  z-index: 3;
+}
+
+.c13-p4-star-1 {
+  /* Purple star top right */
+  width: clamp(40px, 7vw, 60px);
+  top: -15%;
+  right: 18%;
+  animation: floatRotateStar 7s ease-in-out infinite;
+}
+
+.c13-p4-star-2 {
+  /* Purple star top left near ribbon */
+  width: clamp(30px, 5vw, 70px);
+  top: 3%;
+  left: -6%;
+  animation: floatRotateStar 6s ease-in-out infinite reverse;
+}
+
+.c13-p4-star-3 {
+  /* Yellow star bottom left */
+  width: clamp(100px, 15vw, 180px);
+  bottom: -2%;
+  left: -9%;
+  animation: floatRotateStar 5s ease-in-out infinite;
+}
+
+.c13-p4-star-4 {
+  /* Blue star bottom left */
+  width: clamp(50px, 8vw, 100px);
+  bottom: 5%;
+  left: 13%;
+  animation: floatRotateStar 8s ease-in-out infinite reverse;
+}

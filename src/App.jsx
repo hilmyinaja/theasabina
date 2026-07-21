@@ -147,9 +147,47 @@ import f11P6Star2 from './assets/images/Frame_11/2. Bintang Feature P6 TL.png';
 import f11P6Star3 from './assets/images/Frame_11/4. Bintang Feature P6 BL B.png';
 import f11P6Star4 from './assets/images/Frame_11/3. Bintang Feature P6 BL S.png';
 
+// Frame 12
+import f12Bg from './assets/images/Frame_12/Background.png';
+import f12MainObj from './assets/images/Frame_12/Main Object.png';
+import f12Star1 from './assets/images/Frame_12/1. Bintang TR B.png';
+import f12Star2 from './assets/images/Frame_12/2. Bintang TR S.png';
+import f12Star3 from './assets/images/Frame_12/3. Bintang BL S.png';
+import f12Star4 from './assets/images/Frame_12/4. Bintang BL B.png';
+
+// Frame 13
+import f13Text1 from './assets/images/Frame_13/1. Text Object P2.png';
+import f13Text2 from './assets/images/Frame_13/2. Text Object P2.png';
+import f13Star1 from './assets/images/Frame_13/1. Bintang Feature TR.png';
+import f13Star2 from './assets/images/Frame_13/2. Bintang Feature TL.png';
+import f13Star3 from './assets/images/Frame_13/3. Bintang Feature BL B.png';
+import f13Star4 from './assets/images/Frame_13/4. Bintang Feasture BL S.png';
+
+// Frame 13 P3
+import f13P3Text1 from './assets/images/Frame_13/1. Text Object P3.png';
+import f13P3Text2 from './assets/images/Frame_13/2. Text Object P3.png';
+import f13P3Star1 from './assets/images/Frame_13/1. Bintang Feature P3 TR.png';
+import f13P3Star2 from './assets/images/Frame_13/2. Bintang Feature P3 TL.png';
+import f13P3Star3 from './assets/images/Frame_13/3. Bintang Feature P3 BR B.png';
+import f13P3Star4 from './assets/images/Frame_13/4. Bintang Feature P3 BR S.png';
+
+// Frame 13 P4
+import f13P4Text1 from './assets/images/Frame_13/1. Text Object P4.png';
+import f13P4Text2 from './assets/images/Frame_13/2. Text Object P4.png';
+import f13P4Star1 from './assets/images/Frame_13/1. Bintang Feature P4 TR.png';
+import f13P4Star2 from './assets/images/Frame_13/2. Bintang Feature P4 TL.png';
+import f13P4Star3 from './assets/images/Frame_13/3. Bintang Feature P4 BL B.png';
+import f13P4Star4 from './assets/images/Frame_13/4. Bintang Feature P4 BL S.png';
+
 // Videos
 import gerexVideo from './assets/videos/gerex.mov';
 import mabacupVideo from './assets/videos/mabacup.mov';
+import astraVideo from './assets/videos/astra.mp4';
+import dove3Video from './assets/videos/dove3.mp4';
+import dovehVideo from './assets/videos/doveh.mp4';
+import heritierVideo from './assets/videos/heritier.mp4';
+import reverseasVideo from './assets/videos/reverseas.mp4';
+import kriwilVideo from './assets/videos/kriwil.mp4';
 
 function App() {
   const customPictures = [pic1, pic2, pic3, pic4, pic5, pic6];
@@ -257,7 +295,7 @@ function App() {
     // Dynamic scroll snap toggler for Sections 5, 6, and 7
     const snapToggleObserver = new IntersectionObserver((entries) => {
         let isSnapping = false;
-        const allSections = document.querySelectorAll('.product-section, .puzzle-section, .voice-section, .campaign11-section, .campaign11-p3-section, .campaign11-p4-section, .campaign11-p5-section, .campaign11-p6-section');
+        const allSections = document.querySelectorAll('.product-section, .puzzle-section, .voice-section, .campaign11-section, .campaign11-p3-section, .campaign11-p4-section, .campaign11-p5-section, .campaign11-p6-section, .campaign13-section, .campaign13-p3-section, .campaign13-p4-section');
         allSections.forEach(sec => {
         const rect = sec.getBoundingClientRect();
         const screenCenter = window.innerHeight / 2;
@@ -274,7 +312,7 @@ function App() {
       }
     }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] });
 
-    const snapSections = document.querySelectorAll('.product-section, .puzzle-section, .voice-section, .campaign11-section, .campaign11-p3-section, .campaign11-p4-section, .campaign11-p5-section, .campaign11-p6-section');
+    const snapSections = document.querySelectorAll('.product-section, .puzzle-section, .voice-section, .campaign11-section, .campaign11-p3-section, .campaign11-p4-section, .campaign11-p5-section, .campaign11-p6-section, .campaign13-section, .campaign13-p3-section, .campaign13-p4-section');
     snapSections.forEach(sec => snapToggleObserver.observe(sec));
 
     const triggerReveal = document.querySelector('.trigger-reveal');
@@ -686,8 +724,7 @@ function App() {
                 controls
                 playsInline
               >
-                {/* Temporary placeholder video until user provides one */}
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+                <source src={astraVideo} />
               </video>
             </div>
           </div>
@@ -729,8 +766,7 @@ function App() {
                 controls
                 playsInline
               >
-                {/* Temporary placeholder video until user provides one */}
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+                <source src={dove3Video} />
               </video>
             </div>
           </div>
@@ -750,8 +786,7 @@ function App() {
                 controls
                 playsInline
               >
-                {/* Temporary placeholder video until user provides one */}
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+                <source src={dovehVideo} />
               </video>
             </div>
           </div>
@@ -827,6 +862,112 @@ function App() {
               <img src={f11P6Star2} alt="Star" className="c11-p6-star c11-p6-star-2" />
               <img src={f11P6Star3} alt="Star" className="c11-p6-star c11-p6-star-3" />
               <img src={f11P6Star4} alt="Star" className="c11-p6-star c11-p6-star-4" />
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Section 12 (Frame 12) */}
+      <section className="campaign12-section" style={{ backgroundImage: `url(${f12Bg})` }}>
+        <div className="campaign-container">
+          <div className="campaign-main-wrapper reveal">
+            <img src={f12MainObj} alt="Main Object" className="campaign-main-obj" />
+            <img src={f12Star1} alt="Star" className="campaign12-star c12-star-1" />
+            <img src={f12Star2} alt="Star" className="campaign12-star c12-star-2" />
+            <img src={f12Star3} alt="Star" className="campaign12-star c12-star-3" />
+            <img src={f12Star4} alt="Star" className="campaign12-star c12-star-4" />
+          </div>
+        </div>
+      </section>
+
+      {/* Section 13 (Frame 13) */}
+      <section className="campaign13-section">
+        <div className="c13-container">
+          
+          <div className="c13-left reveal">
+            <div className="c13-iphone-wrapper">
+              <img src={f11Iphone} alt="iPhone mockup" className="c13-iphone" />
+              <video 
+                className="c13-iphone-video" 
+                controls
+                playsInline
+              >
+                <source src={heritierVideo} />
+              </video>
+            </div>
+          </div>
+
+          <div className="c13-right reveal">
+            <div className="c13-text-wrapper">
+              <img src={f13Text2} alt="Purple Paper" className="c13-purple-paper" />
+              <img src={f13Text1} alt="Pink Ribbon" className="c13-pink-ribbon" />
+              <img src={f13Star1} alt="Star" className="c13-star c13-star-1" />
+              <img src={f13Star2} alt="Star" className="c13-star c13-star-2" />
+              <img src={f13Star3} alt="Star" className="c13-star c13-star-3" />
+              <img src={f13Star4} alt="Star" className="c13-star c13-star-4" />
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Section 13 Panel 3 (Frame 29) */}
+      <section className="campaign13-p3-section">
+        <div className="c13-p3-container">
+          
+          <div className="c13-p3-left">
+            <div className="c13-p3-text-wrapper">
+              <img src={f13P3Text2} alt="Purple Paper" className="c13-p3-purple-paper" />
+              <img src={f13P3Text1} alt="Purple Ribbon" className="c13-p3-purple-ribbon" />
+              <img src={f13P3Star1} alt="Star" className="c13-p3-star c13-p3-star-1" />
+              <img src={f13P3Star2} alt="Star" className="c13-p3-star c13-p3-star-2" />
+              <img src={f13P3Star3} alt="Star" className="c13-p3-star c13-p3-star-3" />
+              <img src={f13P3Star4} alt="Star" className="c13-p3-star c13-p3-star-4" />
+            </div>
+          </div>
+
+          <div className="c13-p3-right">
+            <div className="c13-iphone-wrapper">
+              <img src={f11Iphone} alt="iPhone mockup" className="c13-iphone" />
+              <video 
+                className="c13-iphone-video" 
+                controls
+                playsInline
+              >
+                <source src={reverseasVideo} />
+              </video>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Section 13 Panel 4 (Frame 30) */}
+      <section className="campaign13-p4-section">
+        <div className="c13-p4-container">
+          
+          <div className="c13-p4-left">
+            <div className="c13-iphone-wrapper">
+              <img src={f11Iphone} alt="iPhone mockup" className="c13-iphone" />
+              <video 
+                className="c13-iphone-video" 
+                controls
+                playsInline
+              >
+                <source src={kriwilVideo} />
+              </video>
+            </div>
+          </div>
+
+          <div className="c13-p4-right">
+            <div className="c13-p4-text-wrapper">
+              <img src={f13P4Text2} alt="Purple Paper" className="c13-p4-purple-paper" />
+              <img src={f13P4Text1} alt="Pink Ribbon" className="c13-p4-pink-ribbon" />
+              <img src={f13P4Star1} alt="Star" className="c13-p4-star c13-p4-star-1" />
+              <img src={f13P4Star2} alt="Star" className="c13-p4-star c13-p4-star-2" />
+              <img src={f13P4Star3} alt="Star" className="c13-p4-star c13-p4-star-3" />
+              <img src={f13P4Star4} alt="Star" className="c13-p4-star c13-p4-star-4" />
             </div>
           </div>
 
