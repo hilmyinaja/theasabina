@@ -68,6 +68,29 @@ import f6Paper from './assets/images/Frame_6/Paper.png';
 import f6Pen from './assets/images/Frame_6/Pen.png';
 import f6Qr from './assets/images/Frame_6/QR.png';
 
+// Frame 7
+import f7Text1 from './assets/images/Frame_7/1. Text Object.png';
+import f7Text2 from './assets/images/Frame_7/2. Text Object.png';
+import f7Text3 from './assets/images/Frame_7/3. Text Object.png';
+import f7Text4 from './assets/images/Frame_7/4. Text Object.png';
+
+// Panel 1 Stars
+import f7Star1 from './assets/images/Frame_7/1. Bintang.png';
+import f7Star2 from './assets/images/Frame_7/2. Bintang.png';
+import f7Star3 from './assets/images/Frame_7/3. Bintang.png';
+
+// Panel 2-4 Stars (Features)
+import f7FeatStar1 from './assets/images/Frame_7/1. Bintang Feature.png';
+import f7FeatStar2 from './assets/images/Frame_7/2 Bintang Feature.png';
+import f7FeatStar3 from './assets/images/Frame_7/3. Bintang Feature.png';
+import f7FeatStar4 from './assets/images/Frame_7/4. Bintang Feature.png';
+
+import f7MainObj from './assets/images/Frame_7/Objek Utama.png';
+import f7KotakSuara from './assets/images/Frame_7/Kotak Suara.png';
+import f7RectMirror from './assets/images/Frame_7/Rect Mirror.png';
+import f7RedString from './assets/images/Frame_7/Red String.png';
+import f7Sampaikan from './assets/images/Frame_7/Sampaikan.png';
+
 function App() {
   const customPictures = [pic1, pic2, pic3, pic4, pic5, pic6];
   const attachedObjects = {
@@ -143,13 +166,38 @@ function App() {
             else wrapper.classList.remove('active');
           }
         }
+        if (entry.target.classList.contains('trigger-v1')) {
+          const wrapper = document.querySelector('.v-redstring-wrapper');
+          if (wrapper) {
+            if (entry.isIntersecting) wrapper.classList.add('active');
+            else wrapper.classList.remove('active');
+          }
+        }
+        if (entry.target.classList.contains('trigger-v2')) {
+          const wrapper = document.querySelector('.v-rectmirror-wrapper');
+          if (wrapper) {
+            if (entry.isIntersecting) wrapper.classList.add('active');
+            else wrapper.classList.remove('active');
+          }
+        }
+        if (entry.target.classList.contains('trigger-v3')) {
+          const wrapper1 = document.querySelector('.v-kotak-wrapper');
+          const wrapper2 = document.querySelector('.v-sampaikan-wrapper');
+          if (entry.isIntersecting) {
+            if (wrapper1) wrapper1.classList.add('active');
+            if (wrapper2) wrapper2.classList.add('active');
+          } else {
+            if (wrapper1) wrapper1.classList.remove('active');
+            if (wrapper2) wrapper2.classList.remove('active');
+          }
+        }
       });
     }, { threshold: 0.3 }); // Trigger when 30% of Panel is visible
 
-    // Dynamic scroll snap toggler for Sections 5 and 6
+    // Dynamic scroll snap toggler for Sections 5, 6, and 7
     const snapToggleObserver = new IntersectionObserver((entries) => {
       let isSnapping = false;
-      const allSections = document.querySelectorAll('.product-section, .puzzle-section');
+      const allSections = document.querySelectorAll('.product-section, .puzzle-section, .voice-section');
       allSections.forEach(sec => {
         const rect = sec.getBoundingClientRect();
         // Check if the center of the screen is looking at this section
@@ -183,6 +231,15 @@ function App() {
     const triggerQr = document.querySelector('.trigger-qr');
     if (triggerQr) toggleObserver.observe(triggerQr);
 
+    const triggerV1 = document.querySelector('.trigger-v1');
+    if (triggerV1) toggleObserver.observe(triggerV1);
+
+    const triggerV2 = document.querySelector('.trigger-v2');
+    if (triggerV2) toggleObserver.observe(triggerV2);
+
+    const triggerV3 = document.querySelector('.trigger-v3');
+    if (triggerV3) toggleObserver.observe(triggerV3);
+
     return () => {
       revealElements.forEach(el => observer.unobserve(el));
       if (triggerReveal) toggleObserver.unobserve(triggerReveal);
@@ -190,6 +247,9 @@ function App() {
       if (triggerMirror) toggleObserver.unobserve(triggerMirror);
       if (triggerPaperPen) toggleObserver.unobserve(triggerPaperPen);
       if (triggerQr) toggleObserver.unobserve(triggerQr);
+      if (triggerV1) toggleObserver.unobserve(triggerV1);
+      if (triggerV2) toggleObserver.unobserve(triggerV2);
+      if (triggerV3) toggleObserver.unobserve(triggerV3);
     };
   }, []);
 
@@ -441,6 +501,92 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* Voice Section (Frame 7) */}
+      <section className="voice-section">
+        {/* Sticky Background & Right Content */}
+        <div className="voice-sticky-layer">
+          <div className="voice-half voice-bg-left"></div>
+          <div className="voice-half voice-bg-right checkerboard-bg">
+            <div className="voice-fixed-wrapper reveal">
+              <img src={f7MainObj} alt="Voice Main Display" className="voice-obj" />
+
+              {/* Popups */}
+              <div className="v-kotak-wrapper reveal-zoom">
+                <div className="p-popup-float">
+                  <img src={f7KotakSuara} alt="Kotak Suara" className="v-kotak-obj p-popup-obj" />
+                </div>
+              </div>
+              <div className="v-sampaikan-wrapper reveal-zoom">
+                <div className="p-popup-float">
+                  <img src={f7Sampaikan} alt="Sampaikan" className="v-sampaikan-obj p-popup-obj" />
+                </div>
+              </div>
+              <div className="v-rectmirror-wrapper reveal-zoom">
+                <div className="p-popup-float">
+                  <img src={f7RectMirror} alt="Rect Mirror" className="v-rectmirror-obj p-popup-obj" />
+                </div>
+              </div>
+              <div className="v-redstring-wrapper reveal-zoom">
+                <div className="p-popup-float">
+                  <img src={f7RedString} alt="Red String" className="v-redstring-obj p-popup-obj" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Scrolling Content (Left Side) */}
+        <div className="voice-scroll-layer">
+          <div className="voice-scroll-left">
+            
+            {/* Panel 1 */}
+            <div className="product-text-panel">
+              <div className="product-text-wrapper reveal reveal-repeat">
+                <img src={f7Text1} alt="Feature 1" className="product-text-obj" />
+                <img src={f7Star1} alt="Star" className="p-star p-star-1" />
+                <img src={f7Star2} alt="Star" className="p-star p-star-2" />
+                <img src={f7Star3} alt="Star" className="p-star p-star-3" />
+              </div>
+            </div>
+
+            {/* Panel 2 */}
+            <div className="product-text-panel trigger-v1">
+              <div className="product-text-wrapper reveal reveal-repeat">
+                <img src={f7Text2} alt="Feature 2" className="product-text-obj" />
+                <img src={f7FeatStar1} alt="Star" className="p-fstar p-fstar-1" />
+                <img src={f7FeatStar2} alt="Star" className="p-fstar p-fstar-2" />
+                <img src={f7FeatStar3} alt="Star" className="p-fstar p-fstar-3" />
+                <img src={f7FeatStar4} alt="Star" className="p-fstar p-fstar-4" />
+              </div>
+            </div>
+
+            {/* Panel 3 */}
+            <div className="product-text-panel trigger-v2">
+              <div className="product-text-wrapper reveal reveal-repeat">
+                <img src={f7Text3} alt="Feature 3" className="product-text-obj" />
+                <img src={f7FeatStar1} alt="Star" className="p-fstar p-fstar-1" />
+                <img src={f7FeatStar2} alt="Star" className="p-fstar p-fstar-2" />
+                <img src={f7FeatStar3} alt="Star" className="p-fstar p-fstar-3" />
+                <img src={f7FeatStar4} alt="Star" className="p-fstar p-fstar-4" />
+              </div>
+            </div>
+
+            {/* Panel 4 */}
+            <div className="product-text-panel trigger-v3">
+              <div className="product-text-wrapper reveal reveal-repeat">
+                <img src={f7Text4} alt="Feature 4" className="product-text-obj" />
+                <img src={f7FeatStar1} alt="Star" className="p-fstar p-fstar-1" />
+                <img src={f7FeatStar2} alt="Star" className="p-fstar p-fstar-2" />
+                <img src={f7FeatStar3} alt="Star" className="p-fstar p-fstar-3" />
+                <img src={f7FeatStar4} alt="Star" className="p-fstar p-fstar-4" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }

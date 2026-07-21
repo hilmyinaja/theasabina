@@ -1079,3 +1079,126 @@ html {
   width: 70%;
   animation: floatRotateStar 5s ease-in-out infinite reverse;
 }
+
+/* VOICE SECTION (Frame 7) */
+.voice-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  width: 100%;
+}
+
+.voice-sticky-layer {
+  grid-column: 1;
+  grid-row: 1;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.voice-scroll-layer {
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  pointer-events: none;
+}
+
+.voice-scroll-left {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+}
+
+.voice-half {
+  width: 50%;
+  height: 100vh;
+  position: relative;
+}
+
+.voice-bg-left {
+  background-color: #DBB0FF;
+}
+
+.checkerboard-bg {
+  background-color: #FFC9E7;
+  background-image: 
+    linear-gradient(45deg, #FFECD8 25%, transparent 25%, transparent 75%, #FFECD8 75%, #FFECD8),
+    linear-gradient(45deg, #FFECD8 25%, transparent 25%, transparent 75%, #FFECD8 75%, #FFECD8);
+  background-size: 80px 80px;
+  background-position: 0 0, 40px 40px;
+}
+
+.voice-fixed-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.voice-obj {
+  width: clamp(280px, 40vw, 700px);
+  height: auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Voice Popups */
+.v-kotak-wrapper,
+.v-sampaikan-wrapper,
+.v-rectmirror-wrapper,
+.v-redstring-wrapper {
+  position: absolute;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.v-kotak-wrapper {
+  bottom: 5%;
+  left: 15%;
+  width: clamp(200px, 15vw, 400px);
+}
+
+.v-sampaikan-wrapper {
+  bottom: 20%;
+  right: 15%;
+  width: clamp(200px, 15vw, 400px);
+}
+
+.v-rectmirror-wrapper {
+  bottom: 45%;
+  right: 30%;
+  width: clamp(400px, 15vw, 400px);
+}
+
+.v-redstring-wrapper {
+  top: 20%;
+  right: 30%;
+  width: clamp(400px, 15vw, 400px);
+}
+
+.v-kotak-wrapper.reveal-zoom,
+.v-sampaikan-wrapper.reveal-zoom,
+.v-rectmirror-wrapper.reveal-zoom,
+.v-redstring-wrapper.reveal-zoom {
+  transform: scale(0.5);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.v-kotak-wrapper.reveal-zoom.active,
+.v-sampaikan-wrapper.reveal-zoom.active,
+.v-rectmirror-wrapper.reveal-zoom.active,
+.v-redstring-wrapper.reveal-zoom.active {
+  transform: scale(1);
+  opacity: 1;
+}
