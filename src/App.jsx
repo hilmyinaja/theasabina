@@ -110,6 +110,8 @@ import f9P2Human from './assets/images/Frame_9/Human Subject.png';
 import f9P2TextObj from './assets/images/Frame_9/Text Object.png';
 import f9P2Badge1 from './assets/images/Frame_9/GERIGI TL.png';
 import f9P2Badge2 from './assets/images/Frame_9/UKEX TR.png';
+import f9P2AtGerigi from './assets/images/Frame_9/@GERIGI.png';
+import f9P2AtUkex from './assets/images/Frame_9/@UKEX.png';
 
 // Frame 9 (Section 9 Panels 3 & 4) Assets
 import f9P3Text2 from './assets/images/Frame_9/2. Main Text Object.png';
@@ -219,7 +221,9 @@ import f14Tiktok from './assets/images/Frame_14/TikTok.png';
 import gerexVideo from './assets/videos/gerex.mov';
 import mabacupVideo from './assets/videos/mabacup.mov';
 import astraVideo from './assets/videos/astra.mp4';
-import dove3Video from './assets/videos/dove3.mp4';
+import dove3_1Video from './assets/videos/dove3_1.mp4';
+import dove3_2Video from './assets/videos/dove3_2.mp4';
+import dove3_3Video from './assets/videos/dove3_3.mp4';
 import dovehVideo from './assets/videos/doveh.mp4';
 import heritierVideo from './assets/videos/heritier.mp4';
 import reverseasVideo from './assets/videos/reverseas.mp4';
@@ -787,10 +791,12 @@ function App() {
                 {/* Panel 2 Elements */}
                 <img src={f9P2Text1} alt="Main Text" className={`c9-p2-text-obj c9-popup-override ${activeC9Panel === 2 ? 'active' : ''}`} />
                 <div className={`c9-p2-badge-wrapper c9-p2-badge-1 c9-popup-override ${activeC9Panel === 2 ? 'active' : ''}`}>
+                  <img src={f9P2AtGerigi} alt="@GERIGI" className="c9-badge-text-img" style={{ marginBottom: '5px', width: '110%', height: 'auto' }} />
                   <img src={f9P2Badge1} alt="GERIGI Badge" className="c9-p2-badge-img" />
                 </div>
                 <div className={`c9-p2-badge-wrapper c9-p2-badge-2 c9-popup-override ${activeC9Panel === 2 ? 'active' : ''}`}>
                   <img src={f9P2Badge2} alt="UKEX Badge" className="c9-p2-badge-img" />
+                  <img src={f9P2AtUkex} alt="@UKEX" className="c9-badge-text-img" style={{ marginTop: '5px', width: '110%', height: 'auto' }} />
                 </div>
 
                 {/* Panel 3 Elements */}
@@ -896,15 +902,25 @@ function App() {
           </div>
 
           <div className="c11-p3-right reveal">
-            <div className="c11-iphone-wrapper">
-              <img src={f11Iphone} alt="iPhone mockup" className="c11-iphone" />
-              <video 
-                className="c11-iphone-video" 
-                controls
-                playsInline
-              >
-                <source src={dove3Video} />
-              </video>
+            <div className="c11-p3-iphone-grid">
+              <div className="c11-iphone-wrapper">
+                <img src={f11Iphone} alt="iPhone mockup" className="c11-iphone" />
+                <video className="c11-iphone-video" controls playsInline>
+                  <source src={dove3_1Video} />
+                </video>
+              </div>
+              <div className="c11-iphone-wrapper">
+                <img src={f11Iphone} alt="iPhone mockup" className="c11-iphone" />
+                <video className="c11-iphone-video" controls playsInline>
+                  <source src={dove3_2Video} />
+                </video>
+              </div>
+              <div className="c11-iphone-wrapper">
+                <img src={f11Iphone} alt="iPhone mockup" className="c11-iphone" />
+                <video className="c11-iphone-video" controls playsInline>
+                  <source src={dove3_3Video} />
+                </video>
+              </div>
             </div>
           </div>
 

@@ -1495,6 +1495,38 @@ html {
   justify-content: center;
 }
 
+.c11-p3-iphone-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: -5px;
+  width: max-content; 
+  margin-left: -5vw;
+}
+
+.c11-p3-iphone-grid .c11-iphone-wrapper {
+  width: clamp(180px, 16vw, 300px);
+  flex-shrink: 0;
+  animation: floatMainObj 6s ease-in-out infinite;
+}
+
+.c11-p3-iphone-grid .c11-iphone-wrapper:nth-child(2) {
+  align-self: flex-start;
+  margin-top: -30px; 
+  animation-delay: 1s;
+}
+
+.c11-p3-iphone-grid .c11-iphone-wrapper:nth-child(1),
+.c11-p3-iphone-grid .c11-iphone-wrapper:nth-child(3) {
+  align-self: flex-start;
+  margin-top: 30px;
+}
+
+.c11-p3-iphone-grid .c11-iphone-wrapper:nth-child(3) {
+  animation-delay: 2s;
+}
+
 .c11-p3-text-wrapper {
   position: relative;
 }
@@ -2625,6 +2657,19 @@ html {
   position: absolute;
   width: clamp(100px, 15vw, 220px);
   z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.c9-badge-text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1rem, 2vw, 1.8rem);
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5), -1px -1px 2px rgba(0,0,0,0.3);
+  pointer-events: none;
 }
 
 .c9-p2-badge-img {
