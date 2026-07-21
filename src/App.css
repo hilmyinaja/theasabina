@@ -2271,3 +2271,166 @@ html {
   left: 13%;
   animation: floatRotateStar 8s ease-in-out infinite reverse;
 }
+
+/* CAMPAIGN 14 SECTION (Frame 31) */
+.campaign14-section {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+  background-color: #FFA8E4; /* Pink */
+  scroll-snap-align: start;
+  padding-top: 5vh;
+  padding-bottom: 0;
+}
+
+.c14-container {
+  width: clamp(300px, 90vw, 1200px);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  min-height: 80vh;
+}
+
+.c14-center {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.c14-rotating-star {
+  position: absolute;
+  width: clamp(500px, 90vw, 1600px);
+  margin-top: 80%; /* Move the star lower */
+  animation: spinSlow 20s linear infinite;
+  z-index: 1;
+}
+
+.c14-human {
+  position: relative;
+  width: clamp(400px, 70vw, 700px);
+  transform: translateY(5%); /* Push down to hide bottom cut */
+  z-index: 2;
+}
+
+/* Floating Elements Container */
+.c14-floating-elements {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  pointer-events: none; /* Let clicks pass through */
+}
+
+.c14-title-left {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width: clamp(200px, 25vw, 400px);
+}
+
+.c14-contact-img {
+  width: 100%;
+  animation: floatMainObj 5s ease-in-out infinite;
+}
+
+.c14-contact-star {
+  position: absolute;
+  width: clamp(40px, 6vw, 80px);
+  bottom: -10%;
+  left: -13%;
+  animation: floatRotateStar 6s ease-in-out infinite reverse;
+}
+
+.c14-title-right {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: clamp(150px, 20vw, 300px);
+}
+
+.c14-me-img {
+  width: 100%;
+  animation: floatMainObj 6s ease-in-out infinite reverse;
+}
+
+.c14-me-star {
+  position: absolute;
+  width: clamp(40px, 6vw, 80px);
+  top: -10%;
+  right: -15%;
+  animation: floatRotateStar 7s ease-in-out infinite;
+}
+
+.c14-social-left {
+  position: absolute;
+  top: 40%;
+  left: -2%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: clamp(180px, 22vw, 350px);
+}
+
+.c14-social-img {
+  width: 100%;
+  animation: floatMainObj 7s ease-in-out infinite;
+}
+
+.c14-tiktok {
+  animation-delay: 1s;
+}
+
+.c14-star-left {
+  position: absolute;
+  width: clamp(40px, 6vw, 80px);
+  top: -10%;
+  right: -25%;
+  animation: floatRotateStar 5s ease-in-out infinite;
+}
+
+.c14-social-right {
+  position: absolute;
+  top: 40%;
+  right: -2%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: clamp(180px, 22vw, 350px);
+}
+
+.c14-linkedin {
+  animation-delay: 1.5s;
+}
+
+.c14-star-right {
+  position: absolute;
+  width: clamp(40px, 6vw, 80px);
+  top: -20%;
+  left: -20%;
+  animation: floatRotateStar 8s ease-in-out infinite reverse;
+}
+
+@media (max-width: 900px) {
+  .c14-title-left { top: 2%; left: 0%; width: 50%; }
+  .c14-title-right { top: 2%; right: 0%; width: 40%; }
+  
+  .c14-social-left { top: 25%; left: 0%; width: 40%; }
+  .c14-social-right { top: 35%; right: 0%; width: 45%; }
+  
+  .c14-human { margin-top: 30%; }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

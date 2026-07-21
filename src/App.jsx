@@ -179,6 +179,20 @@ import f13P4Star2 from './assets/images/Frame_13/2. Bintang Feature P4 TL.png';
 import f13P4Star3 from './assets/images/Frame_13/3. Bintang Feature P4 BL B.png';
 import f13P4Star4 from './assets/images/Frame_13/4. Bintang Feature P4 BL S.png';
 
+// Frame 14
+import f14ContactStar from './assets/images/Frame_14/Contact Star.png';
+import f14Contact from './assets/images/Frame_14/Contact.png';
+import f14Email from './assets/images/Frame_14/Email.png';
+import f14Human from './assets/images/Frame_14/Human Subject.png';
+import f14Insta from './assets/images/Frame_14/Instagram.png';
+import f14Linkedin from './assets/images/Frame_14/LinkedIn.png';
+import f14MeStar from './assets/images/Frame_14/Me Star.png';
+import f14Me from './assets/images/Frame_14/Me.png';
+import f14RotatingStar from './assets/images/Frame_14/Rotating Star.png';
+import f14StarLeft from './assets/images/Frame_14/Star Left.png';
+import f14StarRight from './assets/images/Frame_14/Star Right.png';
+import f14Tiktok from './assets/images/Frame_14/TikTok.png';
+
 // Videos
 import gerexVideo from './assets/videos/gerex.mov';
 import mabacupVideo from './assets/videos/mabacup.mov';
@@ -295,7 +309,7 @@ function App() {
     // Dynamic scroll snap toggler for Sections 5, 6, and 7
     const snapToggleObserver = new IntersectionObserver((entries) => {
         let isSnapping = false;
-        const allSections = document.querySelectorAll('.product-section, .puzzle-section, .voice-section, .campaign11-section, .campaign11-p3-section, .campaign11-p4-section, .campaign11-p5-section, .campaign11-p6-section, .campaign13-section, .campaign13-p3-section, .campaign13-p4-section');
+        const allSections = document.querySelectorAll('.product-section, .puzzle-section, .voice-section, .campaign11-section, .campaign11-p3-section, .campaign11-p4-section, .campaign11-p5-section, .campaign11-p6-section, .campaign13-section, .campaign13-p3-section, .campaign13-p4-section, .campaign14-section');
         allSections.forEach(sec => {
         const rect = sec.getBoundingClientRect();
         const screenCenter = window.innerHeight / 2;
@@ -312,7 +326,7 @@ function App() {
       }
     }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] });
 
-    const snapSections = document.querySelectorAll('.product-section, .puzzle-section, .voice-section, .campaign11-section, .campaign11-p3-section, .campaign11-p4-section, .campaign11-p5-section, .campaign11-p6-section, .campaign13-section, .campaign13-p3-section, .campaign13-p4-section');
+    const snapSections = document.querySelectorAll('.product-section, .puzzle-section, .voice-section, .campaign11-section, .campaign11-p3-section, .campaign11-p4-section, .campaign11-p5-section, .campaign11-p6-section, .campaign13-section, .campaign13-p3-section, .campaign13-p4-section, .campaign14-section');
     snapSections.forEach(sec => snapToggleObserver.observe(sec));
 
     const triggerReveal = document.querySelector('.trigger-reveal');
@@ -968,6 +982,50 @@ function App() {
               <img src={f13P4Star2} alt="Star" className="c13-p4-star c13-p4-star-2" />
               <img src={f13P4Star3} alt="Star" className="c13-p4-star c13-p4-star-3" />
               <img src={f13P4Star4} alt="Star" className="c13-p4-star c13-p4-star-4" />
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Section 14 (Frame 31) */}
+      <section className="campaign14-section">
+        <div className="c14-container reveal">
+          
+          <div className="c14-center">
+            <img src={f14RotatingStar} alt="Rotating Star" className="c14-rotating-star" />
+            <img src={f14Human} alt="Human Subject" className="c14-human" />
+          </div>
+
+          <div className="c14-floating-elements">
+            <div className="c14-title-left">
+              <img src={f14Contact} alt="Contact" className="c14-contact-img" />
+              <img src={f14ContactStar} alt="Star" className="c14-contact-star" />
+            </div>
+            
+            <div className="c14-title-right">
+              <img src={f14Me} alt="Me" className="c14-me-img" />
+              <img src={f14MeStar} alt="Star" className="c14-me-star" />
+            </div>
+
+            <div className="c14-social-left">
+              <a href="https://instagram.com/theasabinaa" target="_blank" rel="noopener noreferrer" style={{ pointerEvents: 'auto' }}>
+                <img src={f14Insta} alt="Instagram" className="c14-social-img" />
+              </a>
+              <a href="https://tiktok.com/@athenaterazono" target="_blank" rel="noopener noreferrer" style={{ pointerEvents: 'auto' }}>
+                <img src={f14Tiktok} alt="TikTok" className="c14-social-img c14-tiktok" />
+              </a>
+              <img src={f14StarLeft} alt="Star" className="c14-star-left" />
+            </div>
+
+            <div className="c14-social-right">
+              <a href="mailto:annisatheasabina@gmail.com" style={{ pointerEvents: 'auto' }}>
+                <img src={f14Email} alt="Email" className="c14-social-img" />
+              </a>
+              <a href="https://linkedin.com/in/theasabina" target="_blank" rel="noopener noreferrer" style={{ pointerEvents: 'auto' }}>
+                <img src={f14Linkedin} alt="LinkedIn" className="c14-social-img c14-linkedin" />
+              </a>
+              <img src={f14StarRight} alt="Star" className="c14-star-right" />
             </div>
           </div>
 
