@@ -100,7 +100,6 @@ import f8Star3 from './assets/images/Frame_8/3. Bintang Object.png';
 import f8Star4 from './assets/images/Frame_8/4. Bintang Object.png';
 
 // Frame 9 (Section 9) Assets
-import f9P2Text1 from './assets/images/Frame_9/1. Main Text Object.png';
 import f9P2Paper from './assets/images/Frame_9/Paper Object.png';
 import f9P2Star1 from './assets/images/Frame_9/1. Bintang TL.png';
 import f9P2Star2 from './assets/images/Frame_9/2. Bintang BR S.png';
@@ -360,15 +359,14 @@ function App() {
     const c9PanelObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          if (entry.target.classList.contains('c9-trigger-1')) setActiveC9Panel(1);
           if (entry.target.classList.contains('c9-trigger-2')) setActiveC9Panel(2);
           if (entry.target.classList.contains('c9-trigger-3')) setActiveC9Panel(3);
           if (entry.target.classList.contains('c9-trigger-4')) setActiveC9Panel(4);
         }
       });
-    }, { threshold: 0.6 });
+    }, { rootMargin: "-49% 0px -49% 0px" });
     
-    const c9Triggers = document.querySelectorAll('.c9-trigger-1, .c9-trigger-2, .c9-trigger-3, .c9-trigger-4');
+    const c9Triggers = document.querySelectorAll('.c9-trigger-2, .c9-trigger-3, .c9-trigger-4');
     c9Triggers.forEach(el => c9PanelObserver.observe(el));
 
     // Reset observer to hide popups when Section 9 is out of view (using adjacent sections)
@@ -775,12 +773,14 @@ function App() {
         <div className="campaign9-sticky-container">
           <div className="c9-p2-container">
             <div className="c9-p2-left">
-              <div className="c9-p2-text-wrapper">
+              <div className={`c9-p2-text-wrapper ${activeC9Panel === 2 ? 'with-paper' : 'without-paper'}`}>
                 <img src={f9P2TextObj} alt="Text Object" className="c9-p2-sticky-text" />
-                <img src={f9P2Paper} alt="Paper" className="c9-p2-paper" />
-                <img src={f9P2Star1} alt="Star" className="c9-p2-star c9-p2-star-1" />
-                <img src={f9P2Star2} alt="Star" className="c9-p2-star c9-p2-star-2" />
-                <img src={f9P2Star3} alt="Star" className="c9-p2-star c9-p2-star-3" />
+                <div className="c9-p2-paper-group">
+                  <img src={f9P2Paper} alt="Paper" className="c9-p2-paper" />
+                  <img src={f9P2Star1} alt="Star" className="c9-p2-star c9-p2-star-1" />
+                  <img src={f9P2Star2} alt="Star" className="c9-p2-star c9-p2-star-2" />
+                  <img src={f9P2Star3} alt="Star" className="c9-p2-star c9-p2-star-3" />
+                </div>
               </div>
             </div>
             <div className="c9-p2-right">
@@ -789,12 +789,16 @@ function App() {
                 <img src={f9P2Human} alt="Human Subject" className="c9-p2-human" />
                 
                 {/* Panel 2 Elements */}
-                <img src={f9P2Text1} alt="Main Text" className={`c9-p2-text-obj c9-popup-override ${activeC9Panel === 2 ? 'active' : ''}`} />
                 <div className={`c9-p2-badge-wrapper c9-p2-badge-1 c9-popup-override ${activeC9Panel === 2 ? 'active' : ''}`}>
+                  <span className="c9-floating-text" style={{ top: '30%', left: '-20%', transform: 'rotate(-9deg)' }}>CENTYL!</span>
+                  <span className="c9-floating-text" style={{ bottom: '10%', left: '-30%', transform: 'rotate(9deg)' }}>FUN!</span>
+                  <span className="c9-floating-text" style={{ bottom: '-15%', left: '15%', transform: 'rotate(7deg)' }}>FRIENDLY!</span>
                   <img src={f9P2AtGerigi} alt="@GERIGI" className="c9-badge-text-img" style={{ marginBottom: '5px', width: '110%', height: 'auto' }} />
                   <img src={f9P2Badge1} alt="GERIGI Badge" className="c9-p2-badge-img" />
                 </div>
                 <div className={`c9-p2-badge-wrapper c9-p2-badge-2 c9-popup-override ${activeC9Panel === 2 ? 'active' : ''}`}>
+                  <span className="c9-floating-text" style={{ top: '-10%', right: '5%', transform: 'rotate(-9deg)' }}>COOL!</span>
+                  <span className="c9-floating-text" style={{ top: '10%', right: '-40%', transform: 'rotate(9deg)' }}>RAJIN!</span>
                   <img src={f9P2Badge2} alt="UKEX Badge" className="c9-p2-badge-img" />
                   <img src={f9P2AtUkex} alt="@UKEX" className="c9-badge-text-img" style={{ marginTop: '5px', width: '110%', height: 'auto' }} />
                 </div>
@@ -835,7 +839,6 @@ function App() {
         </div>
 
         <div className="campaign9-scroll-layer">
-          <section className="campaign9-p1-section c9-trigger-1"></section>
           <section className="campaign9-p2-section c9-trigger-2"></section>
           <section className="campaign9-p3-section c9-trigger-3"></section>
           <section className="campaign9-p4-section c9-trigger-4"></section>
