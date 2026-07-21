@@ -436,24 +436,24 @@ function App() {
           </div>
 
           <div className="toc-items">
-            <div className="toc-item-wrapper toc-item-1 reveal">
+            <a href="#section4" className="toc-item-wrapper toc-item-1 reveal">
               <img src={toc1} alt="1. Campaign Architect" className="toc-item" />
-            </div>
-            <div className="toc-item-wrapper toc-item-3 reveal">
+            </a>
+            <a href="#section10" className="toc-item-wrapper toc-item-3 reveal">
               <img src={toc3} alt="3. Visual Storyteller" className="toc-item" />
-            </div>
-            <div className="toc-item-wrapper toc-item-2 reveal">
+            </a>
+            <a href="#section8" className="toc-item-wrapper toc-item-2 reveal">
               <img src={toc2} alt="2. Social Media Brand Builder" className="toc-item" />
-            </div>
-            <div className="toc-item-wrapper toc-item-4 reveal">
+            </a>
+            <a href="#section12" className="toc-item-wrapper toc-item-4 reveal">
               <img src={toc4} alt="4. Brand Content Strategist" className="toc-item" />
-            </div>
+            </a>
           </div>
         </div>
       </section>
 
       {/* Campaign Architect Section (Frame 4) */}
-      <section className="campaign-section" style={{ backgroundImage: `url(${frame4Bg})` }}>
+      <section id="section4" className="campaign-section" style={{ backgroundImage: `url(${frame4Bg})` }}>
         <div className="campaign-container">
           <div className="campaign-main-wrapper reveal">
             <img src={frame4MainObj} alt="Campaign Architect Main Object" className="campaign-main-obj" />
@@ -701,7 +701,7 @@ function App() {
       </section>
 
       {/* Closing Section (Frame 8) */}
-      <section className="campaign8-section" style={{ backgroundImage: `url(${f8Bg})` }}>
+      <section id="section8" className="campaign8-section" style={{ backgroundImage: `url(${f8Bg})` }}>
         <div className="campaign-container">
           <div className="campaign-main-wrapper reveal">
             <img src={f8MainObj} alt="Closing Object" className="campaign-main-obj" />
@@ -714,7 +714,7 @@ function App() {
       </section>
 
       {/* Section 10 (Frame 10) */}
-      <section className="campaign10-section" style={{ backgroundImage: `url(${f10Bg})` }}>
+      <section id="section10" className="campaign10-section" style={{ backgroundImage: `url(${f10Bg})` }}>
         <div className="campaign-container">
           <div className="campaign-main-wrapper reveal">
             <img src={f10MainObj} alt="Closing Object" className="campaign-main-obj" />
@@ -883,7 +883,7 @@ function App() {
       </section>
 
       {/* Section 12 (Frame 12) */}
-      <section className="campaign12-section" style={{ backgroundImage: `url(${f12Bg})` }}>
+      <section id="section12" className="campaign12-section" style={{ backgroundImage: `url(${f12Bg})` }}>
         <div className="campaign-container">
           <div className="campaign-main-wrapper reveal">
             <img src={f12MainObj} alt="Main Object" className="campaign-main-obj" />
