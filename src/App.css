@@ -2435,20 +2435,99 @@ html {
   to { transform: rotate(360deg); }
 }
 
-/* CAMPAIGN 9 PANEL 2 SECTION (Frame 39) */
-.campaign9-p2-section {
+/* CAMPAIGN 9 STICKY WRAPPER */
+.campaign9-sticky-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
   width: 100%;
-  min-height: 100vh;
-  position: relative;
+  background-color: #FCF5C7; /* Pale yellow */
   z-index: 10;
+}
+
+.campaign9-sticky-container {
+  grid-column: 1;
+  grid-row: 1;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.campaign9-scroll-layer {
+  grid-column: 1;
+  grid-row: 1;
+  z-index: 2;
+  pointer-events: none;
+  padding-top: 25vh;
+  padding-bottom: 25vh;
+}
+
+.c9-p2-sticky-text {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Custom Popup Reveal Override for Section 9 */
+.c9-popup-override {
+  transform: scale(0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.c9-popup-override.active {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Crossfade for Panel 3 Text */
+.c9-p3-text-crossfade {
+  position: absolute;
+  width: 110%;
+  bottom: -10%;
+  z-index: 3;
+}
+
+.crossfade-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.crossfade-img.visible {
+  opacity: 1;
+}
+
+.crossfade-img:first-child {
+  position: relative;
+}
+
+/* CAMPAIGN 9 PANEL 2 SECTION (Frame 39) */
+.campaign9-p1-section,
+.campaign9-p2-section,
+.campaign9-p3-section,
+.campaign9-p4-section {
+  width: 100%;
+  min-height: 50vh;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  background-color: #FCF5C7; /* Pale yellow */
-  scroll-snap-align: start;
+  background-color: transparent;
+  scroll-snap-align: center;
   padding: 5vh 0;
 }
+
 
 .c9-p2-container {
   width: clamp(300px, 95vw, 1600px);
@@ -2569,6 +2648,38 @@ html {
   /* UKEX TR */
   top: 10%;
   right: 2%;
+  animation: floatMainObj 6s ease-in-out infinite reverse;
+}
+
+.c9-p3-tweet-1 {
+  /* Tweet GERIGI */
+  top: 25%;
+  left: -5%;
+  width: clamp(200px, 25vw, 275px);
+  animation: floatMainObj 5s ease-in-out infinite;
+}
+
+.c9-p3-tweet-2 {
+  /* Tweet UKEX */
+  bottom: 15%;
+  right: -5%;
+  width: clamp(200px, 25vw, 275px);
+  animation: floatMainObj 6s ease-in-out infinite reverse;
+}
+
+.c9-p4-story-1 {
+  /* Story GERIGI */
+  top: 5%;
+  left: -3%;
+  width: clamp(200px, 25vw, 250px);
+  animation: floatMainObj 5s ease-in-out infinite;
+}
+
+.c9-p4-story-2 {
+  /* Story UKEX */
+  bottom: 25%;
+  right: -3%;
+  width: clamp(200px, 25vw, 250px);
   animation: floatMainObj 6s ease-in-out infinite reverse;
 }
 

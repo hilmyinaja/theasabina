@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import pic1 from './assets/images/Frame_1/Picture 1.png';
 import pic2 from './assets/images/Frame_1/Picture 2.png';
@@ -110,9 +110,16 @@ import f9P2Human from './assets/images/Frame_9/Human Subject.png';
 import f9P2TextObj from './assets/images/Frame_9/Text Object.png';
 import f9P2Badge1 from './assets/images/Frame_9/GERIGI TL.png';
 import f9P2Badge2 from './assets/images/Frame_9/UKEX TR.png';
+
+// Frame 9 (Section 9 Panels 3 & 4) Assets
 import f9P3Text2 from './assets/images/Frame_9/2. Main Text Object.png';
+import f9P3Text3 from './assets/images/Frame_9/3. Main Text Object.png';
+import f9P3Text4 from './assets/images/Frame_9/4. Main Text Object.png';
 import f9P3Tweet1 from './assets/images/Frame_9/TweetGERIGI.png';
 import f9P3Tweet2 from './assets/images/Frame_9/TweetUKEX.png';
+import f9P4Text5 from './assets/images/Frame_9/5. Main Text Object.png';
+import f9P4Story1 from './assets/images/Frame_9/StoryGERIGI.png';
+import f9P4Story2 from './assets/images/Frame_9/StoryUKEX.png';
 
 // Frame 10
 import f10Bg from './assets/images/Frame_10/Background.png';
@@ -219,19 +226,23 @@ import reverseasVideo from './assets/videos/reverseas.mp4';
 import kriwilVideo from './assets/videos/kriwil.mp4';
 
 function App() {
+  const [isVideoLoading, setIsVideoLoading] = useState(true);
+  const [hoveredTweet, setHoveredTweet] = useState(null);
+  const [activeC9Panel, setActiveC9Panel] = useState(1);
+  
   const customPictures = [pic1, pic2, pic3, pic4, pic5, pic6];
   const attachedObjects = {
-    0: obj1, // Attach Object 1 to Picture 1
-    2: obj2, // Attach Object 2 to Picture 3
-    4: obj3, // Attach Object 3 to Picture 5
-    5: obj4  // Attach Object 4 to Picture 6
+    0: obj1, 
+    2: obj2, 
+    4: obj3, 
+    5: obj4  
   };
 
   useEffect(() => {
     const observerOptions = {
       root: null,
       rootMargin: '50px',
-      threshold: 0.1 // Trigger earlier (when 10% visible)
+      threshold: 0.1 
     };
 
     const observerCallback = (entries) => {
@@ -253,7 +264,6 @@ function App() {
     const revealElements = document.querySelectorAll('.reveal');
     revealElements.forEach(el => observer.observe(el));
 
-    // Special observer for the reveal objects so they can appear/disappear continuously
     const toggleObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.target.classList.contains('trigger-reveal')) {
@@ -271,7 +281,6 @@ function App() {
           }
         }
 
-        // Frame 6 triggers
         if (entry.target.classList.contains('trigger-mirror')) {
           const wrapper = document.querySelector('.p-mirror-wrapper');
           if (wrapper) {
@@ -319,12 +328,11 @@ function App() {
           }
         }
       });
-    }, { threshold: 0.3 }); // Trigger when 30% of Panel is visible
+    }, { threshold: 0.3 }); 
 
-    // Dynamic scroll snap toggler for Sections 5, 6, and 7
     const snapToggleObserver = new IntersectionObserver((entries) => {
         let isSnapping = false;
-        const allSections = document.querySelectorAll('.product-section, .puzzle-section, .voice-section, .campaign9-p2-section, .campaign11-section, .campaign11-p3-section, .campaign11-p4-section, .campaign11-p5-section, .campaign11-p6-section, .campaign13-section, .campaign13-p3-section, .campaign13-p4-section, .campaign14-section');
+        const allSections = document.querySelectorAll('.product-section, .puzzle-section, .voice-section, .campaign9-p2-section, .campaign9-p3-section, .campaign9-p4-section, .campaign9-p5-section, .campaign9-p6-section, .campaign11-section, .campaign11-p3-section, .campaign11-p4-section, .campaign11-p5-section, .campaign11-p6-section, .campaign13-section, .campaign13-p3-section, .campaign13-p4-section, .campaign14-section');
         allSections.forEach(sec => {
         const rect = sec.getBoundingClientRect();
         const screenCenter = window.innerHeight / 2;
@@ -341,8 +349,36 @@ function App() {
       }
     }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] });
 
-    const snapSections = document.querySelectorAll('.product-section, .puzzle-section, .voice-section, .campaign9-p2-section, .campaign11-section, .campaign11-p3-section, .campaign11-p4-section, .campaign11-p5-section, .campaign11-p6-section, .campaign13-section, .campaign13-p3-section, .campaign13-p4-section, .campaign14-section');
+    const snapSections = document.querySelectorAll('.product-section, .puzzle-section, .voice-section, .campaign11-section, .campaign11-p3-section, .campaign11-p4-section, .campaign11-p5-section, .campaign11-p6-section, .campaign13-section, .campaign13-p3-section, .campaign13-p4-section, .campaign14-section');
     snapSections.forEach(sec => snapToggleObserver.observe(sec));
+
+    // Special observer for Campaign 9 Panels
+    const c9PanelObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (entry.target.classList.contains('c9-trigger-1')) setActiveC9Panel(1);
+          if (entry.target.classList.contains('c9-trigger-2')) setActiveC9Panel(2);
+          if (entry.target.classList.contains('c9-trigger-3')) setActiveC9Panel(3);
+          if (entry.target.classList.contains('c9-trigger-4')) setActiveC9Panel(4);
+        }
+      });
+    }, { threshold: 0.6 });
+    
+    const c9Triggers = document.querySelectorAll('.c9-trigger-1, .c9-trigger-2, .c9-trigger-3, .c9-trigger-4');
+    c9Triggers.forEach(el => c9PanelObserver.observe(el));
+
+    // Reset observer to hide popups when Section 9 is out of view (using adjacent sections)
+    const c9ResetObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveC9Panel(0);
+        }
+      });
+    }, { threshold: 0.1 });
+    const sec8 = document.querySelector('.campaign8-section');
+    const sec10 = document.querySelector('.campaign10-section');
+    if (sec8) c9ResetObserver.observe(sec8);
+    if (sec10) c9ResetObserver.observe(sec10);
 
     const triggerReveal = document.querySelector('.trigger-reveal');
     if (triggerReveal) toggleObserver.observe(triggerReveal);
@@ -376,8 +412,10 @@ function App() {
       if (triggerPaperPen) toggleObserver.unobserve(triggerPaperPen);
       if (triggerQr) toggleObserver.unobserve(triggerQr);
       if (triggerV1) toggleObserver.unobserve(triggerV1);
-      if (triggerV2) toggleObserver.unobserve(triggerV2);
       if (triggerV3) toggleObserver.unobserve(triggerV3);
+      c9Triggers.forEach(el => c9PanelObserver.unobserve(el));
+      if (sec8) c9ResetObserver.unobserve(sec8);
+      if (sec10) c9ResetObserver.unobserve(sec10);
     };
   }, []);
 
@@ -728,36 +766,75 @@ function App() {
         </div>
       </section>
 
-      {/* Section 9 Panel 2 (Frame 39) */}
-      <section className="campaign9-p2-section">
-        <div className="c9-p2-container">
-          
-          <div className="c9-p2-left reveal">
-            <div className="c9-p2-text-wrapper">
-              <img src={f9P2TextObj} alt="Main Text" className="c9-p2-main-text" />
-              <img src={f9P2Paper} alt="Paper" className="c9-p2-paper" />
-              <img src={f9P2Star1} alt="Star" className="c9-p2-star c9-p2-star-1" />
-              <img src={f9P2Star2} alt="Star" className="c9-p2-star c9-p2-star-2" />
-              <img src={f9P2Star3} alt="Star" className="c9-p2-star c9-p2-star-3" />
-            </div>
-          </div>
-
-          <div className="c9-p2-right reveal">
-            <div className="c9-p2-human-wrapper">
-              <img src={f9P2Circle} alt="Pink Circle" className="c9-p2-circle" />
-              <img src={f9P2Human} alt="Human Subject" className="c9-p2-human" />
-              <img src={f9P2Text1} alt="Text Object" className="c9-p2-text-obj" />
-              <div className="c9-p2-badge-wrapper c9-p2-badge-1">
-                <img src={f9P2Badge1} alt="GERIGI Badge" className="c9-p2-badge-img" />
-              </div>
-              <div className="c9-p2-badge-wrapper c9-p2-badge-2">
-                <img src={f9P2Badge2} alt="UKEX Badge" className="c9-p2-badge-img" />
+      {/* Section 9 Sticky Wrapper */}
+      <div className="campaign9-sticky-wrapper">
+        <div className="campaign9-sticky-container">
+          <div className="c9-p2-container">
+            <div className="c9-p2-left">
+              <div className="c9-p2-text-wrapper">
+                <img src={f9P2TextObj} alt="Text Object" className="c9-p2-sticky-text" />
+                <img src={f9P2Paper} alt="Paper" className="c9-p2-paper" />
+                <img src={f9P2Star1} alt="Star" className="c9-p2-star c9-p2-star-1" />
+                <img src={f9P2Star2} alt="Star" className="c9-p2-star c9-p2-star-2" />
+                <img src={f9P2Star3} alt="Star" className="c9-p2-star c9-p2-star-3" />
               </div>
             </div>
-          </div>
+            <div className="c9-p2-right">
+              <div className="c9-p2-human-wrapper">
+                <img src={f9P2Circle} alt="Pink Circle" className="c9-p2-circle" />
+                <img src={f9P2Human} alt="Human Subject" className="c9-p2-human" />
+                
+                {/* Panel 2 Elements */}
+                <img src={f9P2Text1} alt="Main Text" className={`c9-p2-text-obj c9-popup-override ${activeC9Panel === 2 ? 'active' : ''}`} />
+                <div className={`c9-p2-badge-wrapper c9-p2-badge-1 c9-popup-override ${activeC9Panel === 2 ? 'active' : ''}`}>
+                  <img src={f9P2Badge1} alt="GERIGI Badge" className="c9-p2-badge-img" />
+                </div>
+                <div className={`c9-p2-badge-wrapper c9-p2-badge-2 c9-popup-override ${activeC9Panel === 2 ? 'active' : ''}`}>
+                  <img src={f9P2Badge2} alt="UKEX Badge" className="c9-p2-badge-img" />
+                </div>
 
+                {/* Panel 3 Elements */}
+                <div className={`c9-p3-text-crossfade c9-popup-override ${activeC9Panel === 3 ? 'active' : ''}`}>
+                  <img src={f9P3Text2} className={`crossfade-img ${hoveredTweet === null ? 'visible' : ''}`} alt="Default Text" />
+                  <img src={f9P3Text4} className={`crossfade-img ${hoveredTweet === 'GERIGI' ? 'visible' : ''}`} alt="GERIGI Text" />
+                  <img src={f9P3Text3} className={`crossfade-img ${hoveredTweet === 'UKEX' ? 'visible' : ''}`} alt="UKEX Text" />
+                </div>
+                <div 
+                  className={`c9-p2-badge-wrapper c9-p3-tweet-1 c9-popup-override ${activeC9Panel === 3 ? 'active' : ''}`}
+                  onMouseEnter={() => setHoveredTweet('GERIGI')}
+                  onMouseLeave={() => setHoveredTweet(null)}
+                >
+                  <img src={f9P3Tweet1} alt="Tweet GERIGI" className="c9-p2-badge-img" />
+                </div>
+                <div 
+                  className={`c9-p2-badge-wrapper c9-p3-tweet-2 c9-popup-override ${activeC9Panel === 3 ? 'active' : ''}`}
+                  onMouseEnter={() => setHoveredTweet('UKEX')}
+                  onMouseLeave={() => setHoveredTweet(null)}
+                >
+                  <img src={f9P3Tweet2} alt="Tweet UKEX" className="c9-p2-badge-img" />
+                </div>
+
+                {/* Panel 4 Elements */}
+                <img src={f9P4Text5} alt="5. Main Text" className={`c9-p2-text-obj c9-popup-override ${activeC9Panel === 4 ? 'active' : ''}`} />
+                <div className={`c9-p2-badge-wrapper c9-p4-story-1 c9-popup-override ${activeC9Panel === 4 ? 'active' : ''}`}>
+                  <img src={f9P4Story1} alt="Story GERIGI" className="c9-p2-badge-img" />
+                </div>
+                <div className={`c9-p2-badge-wrapper c9-p4-story-2 c9-popup-override ${activeC9Panel === 4 ? 'active' : ''}`}>
+                  <img src={f9P4Story2} alt="Story UKEX" className="c9-p2-badge-img" />
+                </div>
+
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
+
+        <div className="campaign9-scroll-layer">
+          <section className="campaign9-p1-section c9-trigger-1"></section>
+          <section className="campaign9-p2-section c9-trigger-2"></section>
+          <section className="campaign9-p3-section c9-trigger-3"></section>
+          <section className="campaign9-p4-section c9-trigger-4"></section>
+        </div>
+      </div>
 
       {/* Section 10 (Frame 10) */}
       <section id="section10" className="campaign10-section" style={{ backgroundImage: `url(${f10Bg})` }}>
